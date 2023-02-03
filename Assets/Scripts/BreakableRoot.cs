@@ -7,6 +7,7 @@ public class BreakableRoot : MonoBehaviour{
     [SerializeField] private Animation rootAnimation;
 [Header("Break root")]
     [SerializeField] private GameObject breakedBranch;
+    [SerializeField] private bool canBreak = true;
     [SerializeField] private float MinHitVelocity = 6;
     [SerializeField] private int MaxHitAllowed = 3;
     private string stepOnRoot_Anim_Name = "StepOnRoot";
@@ -16,7 +17,7 @@ public class BreakableRoot : MonoBehaviour{
         if (collision.collider.tag == Service.playerTag) {
             if(Mathf.Abs(collision.relativeVelocity.y) > MinHitVelocity) { 
                 Debug.Log("±¬²ÈÊ÷¸ù£¡£¡£¡");
-                hitCount++;
+                if(canBreak)hitCount++;
                 rootAnimation.Play(stepOnRootHeavy_Anim_Name);
                 if (hitCount == MaxHitAllowed) {
                     rootSprite.gameObject.SetActive(false);
