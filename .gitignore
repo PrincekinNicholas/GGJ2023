@@ -70,3 +70,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+#ignore Amplify Shader Plug-in
+/[Aa]ssets/[Aa]mplifyShaderEditor
+/[Aa]ssets/[Aa]mplifyShaderEditor.meta
