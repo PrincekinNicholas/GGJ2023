@@ -102,7 +102,7 @@
                     "name": "",
                     "id": "379b3c9c-8bef-45a8-aeeb-1b309fed2279",
                     "path": "<Keyboard>/s",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "Crouch",
