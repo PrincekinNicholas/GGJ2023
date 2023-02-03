@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour{
     [SerializeField] private float moveSpeed;
     [SerializeField] private float runningSpeed;
     [SerializeField] private float crouchSpeed;
+    [SerializeField] private float maxAirdriftSpeed;
     [SerializeField] private float speedSmooth;
 [Header("Jump")]
     [SerializeField] private bool onGround = true;
@@ -17,7 +18,6 @@ public class PlayerControl : MonoBehaviour{
     [SerializeField] private float jumpForce;
     [SerializeField] private float groundCheckRadius = 0.1f;
     private float airdriftSpeed;
-    private float currentSpeed;
     private bool isRunning = false;
 
     private string crouchTrigger = "Crouch";
@@ -35,7 +35,6 @@ public class PlayerControl : MonoBehaviour{
         m_sprite   = GetComponent<SpriteRenderer>();
         m_animator = GetComponent<Animator>();
         m_input    = GetComponent<PlayerInput>();
-        currentSpeed = 0;
     }
     void Update(){
         GroundCheck();
@@ -112,7 +111,7 @@ public class PlayerControl : MonoBehaviour{
     void OnJump(InputValue value){
         if(playerState == PLAYER_STATE.DEFAULT && onGround) {
             transform.position += Vector3.up * (groundCheckRadius + 0.01f);
-            airdriftSpeed = m_rigid.velocity.x * direction;
+            airdriftSpeed = Mathf.Max(Mathf.Abs(m_rigid.velocity.x), maxAirdriftSpeed);
             m_rigid.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             m_animator.SetTrigger(jumpTrigger);
             playerState = PLAYER_STATE.JUMP;
