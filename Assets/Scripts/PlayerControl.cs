@@ -10,12 +10,14 @@ public class PlayerControl : MonoBehaviour{
     [SerializeField] private float moveSpeed;
     [SerializeField] private float runningSpeed;
     [SerializeField] private float crouchSpeed;
+    [SerializeField] private float speedSmooth;
 [Header("Jump")]
     [SerializeField] private bool onGround = true;
     [SerializeField] private LayerMask platformLayer;
     [SerializeField] private float jumpForce;
     [SerializeField] private float groundCheckRadius = 0.1f;
     private float airdriftSpeed;
+    private float currentSpeed;
     private bool isRunning = false;
 
     private string crouchTrigger = "Crouch";
@@ -33,6 +35,7 @@ public class PlayerControl : MonoBehaviour{
         m_sprite   = GetComponent<SpriteRenderer>();
         m_animator = GetComponent<Animator>();
         m_input    = GetComponent<PlayerInput>();
+        currentSpeed = 0;
     }
     void Update(){
         GroundCheck();
@@ -47,7 +50,7 @@ public class PlayerControl : MonoBehaviour{
                 Move(crouchSpeed);
                 break;
             case PLAYER_STATE.JUMP:
-                Move(airdriftSpeed);
+                AirDrift(airdriftSpeed);
                 if (onGround) {
                     playerState = PLAYER_STATE.DEFAULT;
                     m_animator.SetTrigger(standTrigger);
@@ -69,6 +72,11 @@ public class PlayerControl : MonoBehaviour{
     void Move(float speed) {
         var vel = m_rigid.velocity;
         vel.x = direction * speed;
+        m_rigid.velocity = vel;
+    }
+    void AirDrift(float speed) {
+        var vel = m_rigid.velocity;
+        vel.x = Mathf.Lerp(vel.x, direction * speed, Time.fixedDeltaTime * speedSmooth);
         m_rigid.velocity = vel;
     }
     #region Input Action

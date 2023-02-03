@@ -561,8 +561,8 @@ MonoBehaviour:
   playerState: 0
   moveSpeed: 4
   runningSpeed: 7
-  airdriftSpeed: 3
   crouchSpeed: 2.5
+  speedSmooth: 5
   onGround: 1
   platformLayer:
     serializedVersion: 2
