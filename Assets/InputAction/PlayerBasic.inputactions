@@ -144,6 +144,17 @@
                 },
                 {
                     "name": "",
+                    "id": "fc2aa69c-9a15-475c-96b0-4cc138a73c78",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e6141aa2-77e3-4735-93e2-009a92876976",
                     "path": "<Keyboard>/shift",
                     "interactions": "Press(behavior=2)",
