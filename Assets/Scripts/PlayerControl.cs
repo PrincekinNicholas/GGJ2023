@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour{
     [SerializeField] private float moveSpeed;
     [SerializeField] private float runningSpeed;
     private bool isRunning = false;
+    private PLAYER_STATE playerState = PLAYER_STATE.ON_GROUND;
 
     private SpriteRenderer m_sprite;
     private Animator m_animator;
@@ -19,7 +20,20 @@ public class PlayerControl : MonoBehaviour{
         m_input    = GetComponent<PlayerInput>();
     }
     void Update(){
-        transform.position += Vector3.right * direction * (isRunning? runningSpeed:moveSpeed) * Time.deltaTime;
+        switch (playerState) {
+            case PLAYER_STATE.ON_GROUND:
+                transform.position += Vector3.right * direction * (isRunning? runningSpeed:moveSpeed) * Time.deltaTime;
+                break;
+            case PLAYER_STATE.CROUCH:
+
+                break;
+            case PLAYER_STATE.JUMP:
+
+                break;
+        }
+    }
+    void GroundCheck(){
+        
     }
 #region Input Action
     void OnMove(InputValue value){
@@ -34,10 +48,14 @@ public class PlayerControl : MonoBehaviour{
     }
     void OnSprint(InputValue value)=>isRunning = value.isPressed;
     void OnCrouch(InputValue value){
-
+        if(playerState == PLAYER_STATE.ON_GROUND){
+            playerState = PLAYER_STATE.CROUCH;
+        }
     }
     void OnJump(InputValue value){
-
+        if(playerState == PLAYER_STATE.ON_GROUND) {
+            playerState = PLAYER_STATE.JUMP;
+        }
     }
 #endregion
 }

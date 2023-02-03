@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 #region EnumCollection
-public enum TEST{ONE, TWO, THREE}
+public enum PLAYER_STATE {ON_GROUND, CROUCH, JUMP}
 
 #endregion
