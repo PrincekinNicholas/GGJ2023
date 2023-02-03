@@ -561,13 +561,14 @@ MonoBehaviour:
   playerState: 0
   moveSpeed: 4
   runningSpeed: 7
+  airdriftSpeed: 3
   crouchSpeed: 2.5
   onGround: 1
-  jumpForce: 7
   platformLayer:
     serializedVersion: 2
     m_Bits: 64
-  groundCheckRadius: 0.1
+  jumpForce: 7
+  groundCheckRadius: 0.05
 --- !u!61 &1232506926
 BoxCollider2D:
   m_ObjectHideFlags: 0

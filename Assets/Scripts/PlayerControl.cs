@@ -12,14 +12,16 @@ public class PlayerControl : MonoBehaviour{
     [SerializeField] private float crouchSpeed;
 [Header("Jump")]
     [SerializeField] private bool onGround = true;
-    [SerializeField] private float jumpForce;
     [SerializeField] private LayerMask platformLayer;
+    [SerializeField] private float jumpForce;
     [SerializeField] private float groundCheckRadius = 0.1f;
+    private float airdriftSpeed;
     private bool isRunning = false;
 
     private string crouchTrigger = "Crouch";
     private string standTrigger  = "Stand";
     private string moveBoolean   = "Moving";
+    private string jumpTrigger   = "Jump";
 
     private Rigidbody2D m_rigid;
     private SpriteRenderer m_sprite;
@@ -45,8 +47,10 @@ public class PlayerControl : MonoBehaviour{
                 Move(crouchSpeed);
                 break;
             case PLAYER_STATE.JUMP:
+                Move(airdriftSpeed);
                 if (onGround) {
                     playerState = PLAYER_STATE.DEFAULT;
+                    m_animator.SetTrigger(standTrigger);
                 }
                 break;
         }
@@ -99,8 +103,11 @@ public class PlayerControl : MonoBehaviour{
     }
     void OnJump(InputValue value){
         if(playerState == PLAYER_STATE.DEFAULT && onGround) {
-            playerState = PLAYER_STATE.JUMP;
+            transform.position += Vector3.up * (groundCheckRadius + 0.01f);
+            airdriftSpeed = m_rigid.velocity.x * direction;
             m_rigid.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
+            m_animator.SetTrigger(jumpTrigger);
+            playerState = PLAYER_STATE.JUMP;
         }
     }
 #endregion
