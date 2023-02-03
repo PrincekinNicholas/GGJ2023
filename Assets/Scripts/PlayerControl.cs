@@ -10,7 +10,7 @@ public class PlayerControl : MonoBehaviour{
     [SerializeField] private float moveSpeed;
     [SerializeField] private float runningSpeed;
     [SerializeField] private float crouchSpeed;
-    [SerializeField] private float maxAirdriftSpeed;
+    [SerializeField] private float minAirdriftSpeed;
     [SerializeField] private float speedSmooth;
 [Header("Jump")]
     [SerializeField] private bool onGround = true;
@@ -110,8 +110,8 @@ public class PlayerControl : MonoBehaviour{
     }
     void OnJump(InputValue value){
         if(playerState == PLAYER_STATE.DEFAULT && onGround) {
-            transform.position += Vector3.up * (groundCheckRadius + 0.01f);
-            airdriftSpeed = Mathf.Max(Mathf.Abs(m_rigid.velocity.x), maxAirdriftSpeed);
+            airdriftSpeed = Mathf.Max(Mathf.Abs(m_rigid.velocity.x), minAirdriftSpeed);//以玩家起跳时的速度和最低的airdrift速度做比较，得到最后可行的速度
+            transform.position += Vector3.up * (groundCheckRadius + 0.01f); //将玩家抬起来一点，以避免跳起的瞬间触发落地检测
             m_rigid.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             m_animator.SetTrigger(jumpTrigger);
             playerState = PLAYER_STATE.JUMP;

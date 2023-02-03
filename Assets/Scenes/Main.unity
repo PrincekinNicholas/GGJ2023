@@ -306,6 +306,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followTarget: {fileID: 1232506922}
   followSmooth: 2
+  maxYOffset: 2
+  camPosLimit:
+    serializedVersion: 2
+    x: 0
+    y: -28.69
+    width: 14.2
+    height: 29.13
 --- !u!1 &885201694
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +584,7 @@ MonoBehaviour:
   moveSpeed: 4
   runningSpeed: 6
   crouchSpeed: 2.5
-  maxAirdriftSpeed: 4
+  minAirdriftSpeed: 4
   speedSmooth: 5
   onGround: 1
   platformLayer:
