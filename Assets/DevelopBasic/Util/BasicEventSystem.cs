@@ -6,11 +6,10 @@ using UnityEngine;
 //A basic C# Event System
 public static class EventHandler
 {
-    //This is a test event and it's calling function
-    public static event Action<float> E_OnTestEvent;
-    public static void Call_OnTestEvent(float data){
-        E_OnTestEvent?.Invoke(data);
-    }
+    public static event Action E_OnBreakRoot;
+    public static void Call_OnBreakRoot() => E_OnBreakRoot?.Invoke();
+    public static event Action<int> E_UI_RefreshRootCount;
+    public static void Call_UI_RefreshRootCount(int rootCount) => E_UI_RefreshRootCount?.Invoke(rootCount);
 }
 
 //A More Strict Event System

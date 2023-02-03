@@ -23,6 +23,8 @@ public class BreakableRoot : MonoBehaviour{
                     rootSprite.gameObject.SetActive(false);
                     breakedBranch.gameObject.SetActive(true);
                     this.GetComponent<Collider2D>().enabled = false;
+
+                    EventHandler.Call_OnBreakRoot();
                 }
             }
             else {
