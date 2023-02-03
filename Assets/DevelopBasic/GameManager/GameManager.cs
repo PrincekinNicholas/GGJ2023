@@ -37,9 +37,6 @@ public class GameManager : Singleton<GameManager>
         debugActions["restart"].performed += Debug_RestartLevel;
 
         if(isTesting) debugActions.Enable();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
     protected override void OnDestroy(){
         base.OnDestroy();
@@ -157,14 +154,6 @@ public class GameManager : Singleton<GameManager>
             Debug.Log("Test Restart Level");
             RestartLevel();
         }
-    }
-    void Debug_LockCursor(InputAction.CallbackContext callback){
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-    void Debug_UnlockCursor(InputAction.CallbackContext callback){
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
     }
 #endregion
 }
