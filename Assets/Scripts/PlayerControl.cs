@@ -16,7 +16,11 @@ public class PlayerControl : MonoBehaviour{
     [SerializeField] private LayerMask platformLayer;
     [SerializeField] private float groundCheckRadius = 0.1f;
     private bool isRunning = false;
-    
+
+    private string crouchTrigger = "Crouch";
+    private string standTrigger  = "Stand";
+    private string moveBoolean   = "Moving";
+
     private Rigidbody2D m_rigid;
     private SpriteRenderer m_sprite;
     private Animator m_animator;
@@ -63,13 +67,17 @@ public class PlayerControl : MonoBehaviour{
         vel.x = direction * speed;
         m_rigid.velocity = vel;
     }
-#region Input Action
+    #region Input Action
     void OnMove(InputValue value){
         var moveAxis = value.Get<float>();
     //Flip sprite
         if(moveAxis != 0){
+            m_animator.SetBool(moveBoolean, true);
             if (moveAxis < 0) m_sprite.flipX = false;
             else m_sprite.flipX = true;
+        }
+        else {
+            m_animator.SetBool(moveBoolean, false);
         }
 
         direction = moveAxis;
@@ -79,13 +87,13 @@ public class PlayerControl : MonoBehaviour{
         if (value.isPressed) {
             if(playerState == PLAYER_STATE.DEFAULT && onGround){
                 playerState = PLAYER_STATE.CROUCH;
-                transform.localScale = new Vector3(1, 0.8f, 1);
+                m_animator.SetTrigger(crouchTrigger);
             }
         }
         else {
             if(playerState == PLAYER_STATE.CROUCH){
                 playerState = PLAYER_STATE.DEFAULT;
-                transform.localScale = new Vector3(1f, 1f, 1f);
+                m_animator.SetTrigger(standTrigger);
             }
         }
     }
