@@ -35,8 +35,6 @@ public class GameManager : Singleton<GameManager>
     #endif
         
         debugActions["restart"].performed += Debug_RestartLevel;
-        debugActions["cursorLock"].performed += Debug_LockCursor;
-        debugActions["cursorUnlock"].performed += Debug_UnlockCursor;
 
         if(isTesting) debugActions.Enable();
 
@@ -47,8 +45,6 @@ public class GameManager : Singleton<GameManager>
         base.OnDestroy();
 
         debugActions["restart"].performed -= Debug_RestartLevel;
-        debugActions["cursorLock"].performed -= Debug_LockCursor;
-        debugActions["cursorUnlock"].performed -= Debug_UnlockCursor;
 
         if(debugActions.enabled)debugActions.Disable();
     }
