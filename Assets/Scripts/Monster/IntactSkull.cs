@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IntactSkull : MonoBehaviour
 {
+    [SerializeField] private bool RightAsStart = true;
     [SerializeField] private float floatScale;
     [SerializeField] private float floatFreq;
     [SerializeField] private Transform skullRoot;
@@ -21,6 +22,7 @@ public class IntactSkull : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         floatDelta = 0;
+        direction = RightAsStart ? 1 : -1;
     }
 
     // Update is called once per frame
