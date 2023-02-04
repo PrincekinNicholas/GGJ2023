@@ -4,7 +4,9 @@ using UnityEngine.InputSystem;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator), typeof(PlayerInput))]
-public class PlayerControl : MonoBehaviour{
+public class PlayerControl : MonoBehaviour, ISlowable{
+    public float slowFactor { get; set; } = 1;
+    public bool trapped { get; set; } = false;
     [SerializeField] private PLAYER_STATE playerState = PLAYER_STATE.DEFAULT;
 [Header("Basic Movement")]
     [SerializeField] private float moveSpeed;
@@ -15,9 +17,10 @@ public class PlayerControl : MonoBehaviour{
 [Header("Jump")]
     [SerializeField] private bool onGround = true;
     [SerializeField] private LayerMask platformLayer;
-    [SerializeField] private float jumpForce;
+    [SerializeField] private float MaxjumpForce;
     [SerializeField] private float groundCheckRadius = 0.1f;
     private float airdriftSpeed;
+    private float jumpForce;
     private bool isRunning = false;
 
     private string crouchTrigger = "Crouch";
@@ -37,6 +40,7 @@ public class PlayerControl : MonoBehaviour{
         m_rigid    = GetComponent<Rigidbody2D>();
         m_animator = GetComponent<Animator>();
         m_input    = GetComponent<PlayerInput>();
+        jumpForce  = MaxjumpForce;
     }
     void OnEnable(){
         EventHandler.E_OnBeforeSceneUnload += FreezeControl;
@@ -79,7 +83,7 @@ public class PlayerControl : MonoBehaviour{
     }
     void Move(float speed) {
         var vel = m_rigid.velocity;
-        vel.x = direction * speed;
+        vel.x = direction * speed * slowFactor;
         m_rigid.velocity = vel;
     }
     void AirDrift(float speed) {
@@ -112,6 +116,17 @@ public class PlayerControl : MonoBehaviour{
         GameManager.Instance.RestartLevel();
         yield return null;
     }
+    #region Interaface
+    public void SlowDown(float factor) {
+        slowFactor = factor;
+        jumpForce = 0;
+    }
+    public void Recover()
+    {
+        slowFactor = 1;
+        jumpForce = MaxjumpForce;
+    }
+    #endregion
     #region Input Action
     void OnMove(InputValue value){
         var moveAxis = value.Get<float>();

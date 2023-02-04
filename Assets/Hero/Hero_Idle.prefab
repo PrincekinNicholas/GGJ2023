@@ -231,7 +231,7 @@ MonoBehaviour:
   platformLayer:
     serializedVersion: 2
     m_Bits: 64
-  jumpForce: 7
+  MaxjumpForce: 7
   groundCheckRadius: 0.05
 --- !u!1001 &6867553144688237538
 PrefabInstance:
