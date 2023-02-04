@@ -21,6 +21,10 @@ public class PlayerControl : MonoBehaviour, ISlowable{
 [Header("Crouch")]
     [SerializeField] private bool holdCrouch = false;
     [SerializeField] private bool headBlocked = false;
+[Header("Sound")]
+    [SerializeField] private AudioSource playerSource;
+    [SerializeField] private AudioClip jumpClip;
+    [SerializeField] private AudioClip walkClip;
     private float airdriftSpeed;
     private float jumpForce;
     private bool isRunning = false;
@@ -198,6 +202,8 @@ public class PlayerControl : MonoBehaviour, ISlowable{
             m_rigid.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             m_animator.SetTrigger(jumpTrigger);
             playerState = PLAYER_STATE.JUMP;
+
+            playerSource.PlayOneShot(jumpClip);
         }
     }
 #endregion
