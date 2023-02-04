@@ -18,9 +18,13 @@ public class PlayerControl : MonoBehaviour, ISlowable{
     [SerializeField] private LayerMask platformLayer;
     [SerializeField] private float MaxjumpForce;
     [SerializeField] private float groundCheckRadius = 0.1f;
+[Header("Crouch")]
+    [SerializeField] private bool holdCrouch = false;
+    [SerializeField] private bool headBlocked = false;
     private float airdriftSpeed;
     private float jumpForce;
     private bool isRunning = false;
+    private bool isDead = false;
 
     private string crouchTrigger = "Crouch";
     private string standTrigger  = "Stand";
@@ -49,6 +53,10 @@ public class PlayerControl : MonoBehaviour, ISlowable{
     }
     void Update(){
         GroundCheck();
+        if(playerState == PLAYER_STATE.CROUCH)
+        {
+            CrouchHeadCheck();
+        }
     }
     void FixedUpdate() {
         switch (playerState)
@@ -58,6 +66,12 @@ public class PlayerControl : MonoBehaviour, ISlowable{
                 break;
             case PLAYER_STATE.CROUCH:
                 Move(crouchSpeed);
+                if (!headBlocked && !holdCrouch)
+                {
+                    playerState = PLAYER_STATE.DEFAULT;
+                    m_animator.SetTrigger(standTrigger);
+                    ScaleCollisionBox(0.4f);
+                }
                 break;
             case PLAYER_STATE.JUMP:
                 AirDrift(airdriftSpeed);
@@ -70,15 +84,18 @@ public class PlayerControl : MonoBehaviour, ISlowable{
     }
     void OnDrawGizmos(){
         DebugExtension.DrawCircle(transform.position, Vector3.forward, Color.green, groundCheckRadius);
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(transform.position + Vector3.up * 0.62f, Vector3.up * 0.1f);
     }
     void FreezeControl()=>m_input.DeactivateInput();
     void GroundCheck(){
-        if(Physics2D.OverlapCircle(transform.position, groundCheckRadius, platformLayer) != null) {
-            onGround = true;
-        }
-        else {
-            onGround = false;
-        }
+        if(Physics2D.OverlapCircle(transform.position, groundCheckRadius, platformLayer) != null) onGround = true;
+        else onGround = false;
+    }
+    void CrouchHeadCheck()
+    {
+        if(Physics2D.Raycast(transform.position + Vector3.up*0.62f, Vector3.up, 0.1f, platformLayer))headBlocked = true;
+        else headBlocked = false;
     }
     void Move(float speed) {
         var vel = m_rigid.velocity;
@@ -91,7 +108,10 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         m_rigid.velocity = vel;
     }
     public void Kill(){
-        StartCoroutine(CoroutinePlayDead());
+        if (!isDead){
+            isDead = true;
+            StartCoroutine(CoroutinePlayDead());
+        }
     }
     void ScaleCollisionBox(float scale)
     {
@@ -105,7 +125,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         GetComponent<Collider2D>().enabled = false;
 
         Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(.5f);
+        yield return new WaitForSecondsRealtime(.35f);
 
         Time.timeScale = 0.5f;
         m_animator.SetTrigger("Dead");
@@ -154,6 +174,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
     void OnSprint(InputValue value)=>isRunning = value.isPressed;
     void OnCrouch(InputValue value){
         if (value.isPressed) {
+            holdCrouch = true;
             if(playerState == PLAYER_STATE.DEFAULT && onGround){
                 playerState = PLAYER_STATE.CROUCH;
                 m_animator.SetTrigger(crouchTrigger);
@@ -161,7 +182,9 @@ public class PlayerControl : MonoBehaviour, ISlowable{
             }
         }
         else {
-            if(playerState == PLAYER_STATE.CROUCH){
+            holdCrouch = false;
+            if (playerState == PLAYER_STATE.CROUCH && !headBlocked)
+            {
                 playerState = PLAYER_STATE.DEFAULT;
                 m_animator.SetTrigger(standTrigger);
                 ScaleCollisionBox(0.4f);
