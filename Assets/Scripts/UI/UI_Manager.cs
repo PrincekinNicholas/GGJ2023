@@ -49,6 +49,7 @@ public class UI_Manager : MonoBehaviour
     }
     void CleanUpDialogues()
     {
+        if (spawnedBubbleDict == null) return;
         foreach (var dialogue in spawnedBubbleDict)
         {
             Destroy(dialogue.Value.gameObject);
