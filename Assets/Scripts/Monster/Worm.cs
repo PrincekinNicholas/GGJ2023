@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Worm : MonoBehaviour, ISlowable{
     public float slowFactor { get; set; } = 1;
+    [SerializeField] private bool RightAsStart = true;
     [SerializeField] private Sprite wormStretch;
     [SerializeField] private Sprite wormSquish;
 
@@ -36,6 +37,7 @@ public class Worm : MonoBehaviour, ISlowable{
         guardPos = transform.position;
         m_sprite = GetComponent<SpriteRenderer>();
         collisionTime = Time.time;
+        direction = RightAsStart ? 1 : -1;
         delta = 0;
     }
     void Update(){
