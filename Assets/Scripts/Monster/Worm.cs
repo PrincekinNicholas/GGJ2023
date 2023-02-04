@@ -81,6 +81,7 @@ public class Worm : MonoBehaviour{
     {
         delta += Time.deltaTime * freq;
         if (delta >= 1){
+            CollisionDetection();
             delta = 0;
             squish = !squish;
             if (squish) m_sprite.sprite = wormSquish;
@@ -88,7 +89,6 @@ public class Worm : MonoBehaviour{
             transform.position += Vector3.right * direction * moveStep;
         }
 
-        CollisionDetection();
     }
     void CollisionDetection()
     {
@@ -100,6 +100,11 @@ public class Worm : MonoBehaviour{
             m_sprite.flipX = !m_sprite.flipX;
             monsterState = WORM_STATE.GUARD;
         }
+    }
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(0, 1, 0, 0.5f);
+        Gizmos.DrawCube(transform.position, collisionDetectionSize);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
