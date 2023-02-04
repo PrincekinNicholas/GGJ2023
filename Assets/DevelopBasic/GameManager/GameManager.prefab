@@ -128,7 +128,7 @@ MonoBehaviour:
   targetFrameRate: 60
   BlackScreenCanvasGroup: {fileID: 4562222128510109114}
   transitionDuration: 1
-  loadInitSceneFromGameManager: 0
+  loadInitSceneFromGameManager: 1
   InitScene: GroundLevel
   isDemo: 1
   isTesting: 1
