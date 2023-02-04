@@ -21,7 +21,7 @@ MonoBehaviour:
     value: 1
   darkness:
     overrideState: 1
-    value: 0.02
+    value: 0.01
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
