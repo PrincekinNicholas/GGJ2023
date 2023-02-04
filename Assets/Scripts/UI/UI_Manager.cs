@@ -15,6 +15,7 @@ public class UI_Manager : MonoBehaviour
 [Header("Root Amount")]
     [SerializeField] private TextMeshProUGUI rootAmount;
     private Dictionary<DialogueCommand, UI_DialogueBubble> spawnedBubbleDict;
+    private List<DialogueCommand> playedCommand;
     private void Awake()
     {
         EventHandler.E_UI_RefreshRootCount += RefreshRootAmount;
@@ -31,10 +32,19 @@ public class UI_Manager : MonoBehaviour
         EventHandler.E_UI_OnHideDialogueBubble -= HideDialogueBubble;
         EventHandler.E_OnBeforeSceneUnload -= CleanUpDialogues;
     }
-    [ContextMenu("Test Spawn Dialogue")]
-    void SpawnDialogue()
+    private void Update()
     {
-        EventHandler.Call_UI_OnShowDialogueBubble(new DialogueCommand("TEST", "CAT", Vector2.zero));
+        if (playedCommand == null || playedCommand.Count == 0) return;
+        for(int i=0; i< playedCommand.Count; i++)
+        {
+            var dialogue = spawnedBubbleDict[playedCommand[i]];
+            dialogue.DialogueUpdate();
+            if (dialogue.TimeUp)
+            {
+                StartCoroutine(dialogue.coroutineFadeContent(false));
+                continue;
+            }
+        }
     }
     void ShowSubtitle(string content)
     {
@@ -60,13 +70,15 @@ public class UI_Manager : MonoBehaviour
     void ShowDialogueBubble(DialogueCommand dialogue)
     {
         if (spawnedBubbleDict == null) spawnedBubbleDict = new Dictionary<DialogueCommand, UI_DialogueBubble>();
+        if (playedCommand == null) playedCommand = new List<DialogueCommand>();
 
         if (!spawnedBubbleDict.ContainsKey(dialogue))
         {
             UI_DialogueBubble dialogueGroup = GameObject.Instantiate(dialogueBubblePrefab, dialogueBubblePanel).GetComponent<UI_DialogueBubble>();
             spawnedBubbleDict.Add(dialogue, dialogueGroup);
+            playedCommand.Add(dialogue);
         }
-        spawnedBubbleDict[dialogue].InitiateContent(dialogue.speakerName, dialogue.content, dialogue.speakerPos, bubbleStyle.GetStyle(dialogue.style));
+        spawnedBubbleDict[dialogue].InitiateContent(dialogue.speakerName, dialogue.content, dialogue.speakerPos, dialogue.lifeTime, bubbleStyle.GetStyle(dialogue.style));
         StartCoroutine(coroutineFadeInHeardDialogue(dialogue));
     }
     void HideDialogueBubble(DialogueCommand dialogue)
