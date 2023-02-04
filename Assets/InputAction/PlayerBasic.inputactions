@@ -133,6 +133,17 @@
                 },
                 {
                     "name": "",
+                    "id": "9da3a6f6-e716-4353-863d-daaca5083e8b",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "379b3c9c-8bef-45a8-aeeb-1b309fed2279",
                     "path": "<Keyboard>/s",
                     "interactions": "Press(behavior=2)",
@@ -146,6 +157,17 @@
                     "name": "",
                     "id": "fc2aa69c-9a15-475c-96b0-4cc138a73c78",
                     "path": "<Keyboard>/c",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d7c4bf6-811d-48d8-b96a-f9b35f1c4609",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
