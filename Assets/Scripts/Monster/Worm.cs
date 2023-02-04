@@ -95,10 +95,10 @@ public class Worm : MonoBehaviour{
         if(Physics2D.OverlapBox(transform.position, collisionDetectionSize, 0, collisionLayer) && Time.time - collisionTime > collisionDetectionStep)
         {
             collisionTime = Time.time;
-            //transform -= 2 * Vector3.right * direction * maxSpeed * Time.deltaTime;
-            //direction *= -1;
-            //speed = maxSpeed * 0.5f;
+            transform.position -= Vector3.right * direction * moveStep * Time.deltaTime;
+            direction *= -1;
             m_sprite.flipX = !m_sprite.flipX;
+            monsterState = WORM_STATE.GUARD;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
