@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Worm : MonoBehaviour{
+public class Worm : MonoBehaviour, ISlowable{
+    public float slowFactor { get; set; } = 1;
     [SerializeField] private Sprite wormStretch;
     [SerializeField] private Sprite wormSquish;
 
@@ -51,6 +52,24 @@ public class Worm : MonoBehaviour{
                 break;
         }
     }
+    public void SlowDown(float factor)
+    {
+        StartCoroutine(coroutineSlowingDown(factor));
+    }
+    IEnumerator coroutineSlowingDown(float targetFactor)
+    {
+        float initFactor = slowFactor;
+        for (float t = 0; t < 1; t += Time.deltaTime * 2f)
+        {
+            slowFactor = Mathf.Lerp(initFactor, targetFactor, EasingFunc.Easing.SmoothInOut(t));
+            yield return null;
+        }
+        slowFactor = targetFactor;
+    }
+    public void Recover()
+    {
+        slowFactor = 1;
+    }
     void FaceDirection()
     {
         if (transform.position.x > guardPos.x + guardRange)
@@ -79,7 +98,7 @@ public class Worm : MonoBehaviour{
     }
     void Move(float freq)
     {
-        delta += Time.deltaTime * freq;
+        delta += Time.deltaTime * freq * slowFactor;
         if (delta >= 1){
             CollisionDetection();
             delta = 0;
@@ -88,7 +107,6 @@ public class Worm : MonoBehaviour{
             else m_sprite.sprite = wormStretch;
             transform.position += Vector3.right * direction * moveStep;
         }
-
     }
     void CollisionDetection()
     {

@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(Animator), typeof(PlayerInput))]
 public class PlayerControl : MonoBehaviour, ISlowable{
     public float slowFactor { get; set; } = 1;
-    public bool trapped { get; set; } = false;
     [SerializeField] private PLAYER_STATE playerState = PLAYER_STATE.DEFAULT;
 [Header("Basic Movement")]
     [SerializeField] private float moveSpeed;
@@ -118,13 +117,23 @@ public class PlayerControl : MonoBehaviour, ISlowable{
     }
     #region Interaface
     public void SlowDown(float factor) {
-        slowFactor = factor;
+        StartCoroutine(coroutineSlowingDown(factor));
         jumpForce = 0;
     }
     public void Recover()
     {
         slowFactor = 1;
         jumpForce = MaxjumpForce;
+    }
+    IEnumerator coroutineSlowingDown(float targetFactor)
+    {
+        float initFactor = slowFactor;
+        for(float t=0; t<1; t += Time.deltaTime*2f)
+        {
+            slowFactor = Mathf.Lerp(initFactor, targetFactor, EasingFunc.Easing.SmoothInOut(t));
+            yield return null;
+        }
+        slowFactor = targetFactor;
     }
     #endregion
     #region Input Action
