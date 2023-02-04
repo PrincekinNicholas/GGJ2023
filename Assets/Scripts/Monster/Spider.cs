@@ -13,6 +13,9 @@ public class Spider : MonoBehaviour
     [SerializeField] private float backTime;
     [SerializeField] private float shakeTime;
     [SerializeField] private AnimationCurve fallCurve;
+[Header("Audio")]
+    [SerializeField] private AudioSource spiderSource;
+    [SerializeField] private AudioClip spiderClip;
     private bool shake = false;
     private Vector3 targetPos, initPos, backPos;
     private float fallDelta, shakeDelta;
@@ -69,6 +72,7 @@ public class Spider : MonoBehaviour
         if (monsterState == SPIDER_STATE.GUARD)
         {
             fallDelta = 0;
+            spiderSource.PlayOneShot(spiderClip);
             monsterState = SPIDER_STATE.ALERT;
             spiderRotateAnime.SetTrigger("Rotate");
         }
