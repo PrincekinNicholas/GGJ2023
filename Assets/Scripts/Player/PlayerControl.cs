@@ -24,7 +24,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
 [Header("Sound")]
     [SerializeField] private AudioSource playerSource;
     [SerializeField] private AudioClip jumpClip;
-    [SerializeField] private AudioClip walkClip;
+    [SerializeField] private AudioClip deadClip;
     private float airdriftSpeed;
     private float jumpForce;
     private bool isRunning = false;
@@ -128,6 +128,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         m_input.DeactivateInput();
         GetComponent<Collider2D>().enabled = false;
 
+        playerSource.PlayOneShot(deadClip);
         Time.timeScale = 0.15f;
         yield return new WaitForSecondsRealtime(.35f);
 

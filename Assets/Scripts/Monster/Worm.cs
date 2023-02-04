@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Worm : MonoBehaviour, ISlowable{
     public float slowFactor { get; set; } = 1;
+    [SerializeField] private WORM_STATE monsterState = WORM_STATE.GUARD;
+
     [SerializeField] private bool RightAsStart = true;
     [SerializeField] private Sprite wormStretch;
     [SerializeField] private Sprite wormSquish;
@@ -22,14 +24,14 @@ public class Worm : MonoBehaviour, ISlowable{
     [SerializeField] private float detectDistance;
     [SerializeField] private LayerMask collisionLayer;
     [SerializeField] private float collisionDetectionStep;
+[Header("Audio")]
+    [SerializeField] private float audioFade_Radius;
     private bool squish = false;
 
     private float direction = 1;
     private float delta;
     private float collisionTime;
     private Vector3 guardPos;
-
-    [SerializeField] private WORM_STATE monsterState = WORM_STATE.GUARD;
 
     private SpriteRenderer m_sprite;
     private Transform m_playerTrans;
