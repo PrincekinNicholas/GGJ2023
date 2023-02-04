@@ -942,8 +942,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7816469892701147976, guid: 1aed7ff9c5c477545924d1173a2df44e, type: 3}
-      propertyPath: fallTime
-      value: 2
+      propertyPath: backTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7816469892701147988, guid: 1aed7ff9c5c477545924d1173a2df44e, type: 3}
       propertyPath: m_Name
