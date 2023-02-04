@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae7ecdfddf9cb5459e8d08dc7f9e8f1, type: 3}
+  m_Name: Dialogue Bubble_Style_SO
+  m_EditorClassIdentifier: 
+  dialogueStyles:
+  - style: 0
+    NameColor: {r: 0.23529412, g: 0.25490198, b: 0.1882353, a: 1}
+    ContentColor: {r: 0.10980392, g: 0.12156863, b: 0.09019608, a: 1}
+    ContinueMarkColor: {r: 0.15686275, g: 0.16862746, b: 0.1254902, a: 1}
+    TextColor: {r: 0.38431373, g: 0.41960785, b: 0.30588236, a: 1}
+  - style: 1
+    NameColor: {r: 0, g: 0, b: 0, a: 0}
+    ContentColor: {r: 0, g: 0, b: 0, a: 0}
+    ContinueMarkColor: {r: 0, g: 0, b: 0, a: 0}
+    TextColor: {r: 0, g: 0, b: 0, a: 0}
