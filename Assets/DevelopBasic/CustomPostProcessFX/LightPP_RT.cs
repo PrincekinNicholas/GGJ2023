@@ -7,6 +7,7 @@ public class LightPP_RT : MonoBehaviour
 {
     [SerializeField] private int DownGrade = 1;
     private Camera cam;
+    private Camera mainCam;
     private RenderTexture tempTex;
     private string lightPPMaskName = "_LightPPMaskTex";
     private void Awake()
@@ -15,10 +16,14 @@ public class LightPP_RT : MonoBehaviour
     }
     void OnEnable()
     {
-        Debug.Log("Camera Load render textures");
+        mainCam = Camera.main;
         if (tempTex == null) tempTex = RenderTexture.GetTemporary(cam.pixelWidth / DownGrade, cam.pixelHeight / DownGrade, 0, RenderTextureFormat.R8);
         cam.targetTexture = tempTex;
         Shader.SetGlobalTexture(lightPPMaskName, cam.targetTexture);
+    }
+    private void LateUpdate()
+    {
+        cam.orthographicSize = mainCam.orthographicSize;
     }
     void OnDisable()
     {
@@ -26,7 +31,6 @@ public class LightPP_RT : MonoBehaviour
         {
             cam.targetTexture = null;
             RenderTexture.ReleaseTemporary(tempTex);
-            Debug.Log("Camera release render textures");
         }
     }
     void OnDestroy()
@@ -35,7 +39,6 @@ public class LightPP_RT : MonoBehaviour
         {
             cam.targetTexture = null;
             RenderTexture.ReleaseTemporary(tempTex);
-            Debug.Log("Camera release render textures");
         }
     }
 }
