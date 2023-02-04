@@ -20,5 +20,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UnderGround B2Level.unity
     guid: 6304f30dac8afd246aa6fada8deec6b1
+  - enabled: 1
+    path: Assets/Scenes/UnderGround RB2Level.unity
+    guid: b8993b8d3d9061042ba72e5024a377b9
+  - enabled: 1
+    path: Assets/Scenes/UnderGround RB1Level.unity
+    guid: 0dd09026282acd345ae6d0efbfc1f29c
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: a1c2c35b981fb9947a81bf325f189139
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ba7cd9097760a9547bd61f5633a1d9e6, type: 2}
