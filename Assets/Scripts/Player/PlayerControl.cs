@@ -41,6 +41,8 @@ public class PlayerControl : MonoBehaviour, ISlowable{
     private Animator m_animator;
     private PlayerInput m_input;
     private float direction = 0;
+
+    public Vector3 velocity { get { return m_rigid.velocity; } }
     private void Awake(){
         m_sprite   = GetComponentInChildren<SpriteRenderer>();
         m_collider = GetComponent<CircleCollider2D>();

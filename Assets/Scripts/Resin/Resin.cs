@@ -6,8 +6,10 @@ public class Resin : MonoBehaviour
 {
     [SerializeField, Range(0,1)] private float slowdownFactor = 0.2f;
     [SerializeField] private ParticleSystem m_vfx_mudDot;
+[Header("Audio")]
+    [SerializeField] private AudioSource resinSource;
     List<ISlowable> slowableList = new List<ISlowable>();
-    Transform playerTrans;
+    PlayerControl control;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var slowable = collision.GetComponent<ISlowable>();
@@ -20,18 +22,24 @@ public class Resin : MonoBehaviour
             }
             if(collision.tag == Service.playerTag)
             {
-                playerTrans = collision.transform;
+                control = collision.gameObject.GetComponent<PlayerControl>();
                 m_vfx_mudDot.Play();
             }
         }
     }
     private void Update()
     {
-        if(playerTrans != null)
+        if(control != null)
         {
             Vector3 pos = m_vfx_mudDot.transform.position;
-            pos.x = playerTrans.position.x;
+            pos.x = control.transform.position.x;
             m_vfx_mudDot.transform.position = pos;
+            if (control)
+            {
+                if(!resinSource.isPlaying) resinSource.Play();
+                //resinSource.volume = Mathf.Lerp();
+            }
+            if (control == null && resinSource.isPlaying) resinSource.Stop();
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -46,7 +54,7 @@ public class Resin : MonoBehaviour
             }
             if (collision.tag == Service.playerTag)
             {
-                playerTrans = null;
+                control = null;
                 m_vfx_mudDot.Stop();
             }
         }

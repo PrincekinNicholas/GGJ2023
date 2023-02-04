@@ -25,7 +25,8 @@ public class Worm : MonoBehaviour, ISlowable{
     [SerializeField] private LayerMask collisionLayer;
     [SerializeField] private float collisionDetectionStep;
 [Header("Audio")]
-    [SerializeField] private float audioFade_Radius;
+    [SerializeField] private AudioSource wormSource;
+    [SerializeField] private AudioClip wormClip;
     private bool squish = false;
 
     private float direction = 1;
@@ -110,6 +111,7 @@ public class Worm : MonoBehaviour, ISlowable{
             if (squish) m_sprite.sprite = wormSquish;
             else m_sprite.sprite = wormStretch;
             transform.position += Vector3.right * direction * moveStep;
+            wormSource.PlayOneShot(wormClip);
         }
     }
     void CollisionDetection()
