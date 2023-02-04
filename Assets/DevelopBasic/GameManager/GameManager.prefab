@@ -127,9 +127,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetFrameRate: 60
   BlackScreenCanvasGroup: {fileID: 4562222128510109114}
-  transitionDuration: 0.5
+  transitionDuration: 1
   loadInitSceneFromGameManager: 0
-  InitScene: Museum
+  InitScene: GroundLevel
   isDemo: 1
   isTesting: 1
   demoText: {fileID: 6073298263620526879}

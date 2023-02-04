@@ -36,6 +36,12 @@ public class PlayerControl : MonoBehaviour{
         m_animator = GetComponent<Animator>();
         m_input    = GetComponent<PlayerInput>();
     }
+    void OnEnable(){
+        EventHandler.E_OnBeforeSceneUnload += FreezeControl;
+    }
+    void OnDisable(){
+        EventHandler.E_OnBeforeSceneUnload -= FreezeControl;
+    }
     void Update(){
         GroundCheck();
     }
@@ -60,6 +66,7 @@ public class PlayerControl : MonoBehaviour{
     void OnDrawGizmos(){
         DebugExtension.DrawCircle(transform.position, Vector3.forward, Color.green, groundCheckRadius);
     }
+    void FreezeControl()=>m_input.DeactivateInput();
     void GroundCheck(){
         if(Physics2D.OverlapCircle(transform.position, groundCheckRadius, platformLayer) != null) {
             onGround = true;

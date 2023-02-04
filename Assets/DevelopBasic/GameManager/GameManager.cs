@@ -50,7 +50,12 @@ public class GameManager : Singleton<GameManager>
             StartCoroutine(SwitchSceneCoroutine(from, to));
         }
     }
-    public void SwitchingScene(string to){
+    public void SwitchingScene(string to) {
+        if (!isSwitchingScene) {
+            StartCoroutine(SwitchSceneCoroutine(SceneManager.GetActiveScene().name, to));
+        }
+    }
+    public void SwitchingSceneDirectly(string to){
         if(!isSwitchingScene){
             StartCoroutine(SwitchSceneCoroutine(to));
         }
@@ -108,6 +113,7 @@ public class GameManager : Singleton<GameManager>
 
         if(from != string.Empty){
             //TO DO: do something before the last scene is unloaded. e.g: call event of saving 
+            EventHandler.Call_OnBeforeSceneUnload();
             yield return FadeInScreen(transitionDuration);
             yield return SceneManager.UnloadSceneAsync(from);
         }
