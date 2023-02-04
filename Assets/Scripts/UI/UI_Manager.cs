@@ -8,6 +8,7 @@ public class UI_Manager : MonoBehaviour
 {
 [Header("Dialogue Bubble")]
     [SerializeField] private GameObject dialogueBubblePrefab;
+    [SerializeField] private DialogueBubble_Style_SO bubbleStyle;
     [SerializeField] private Transform dialogueBubblePanel;
 [Header("Subtitle")]
     [SerializeField] private TextMeshProUGUI subtitleText;
@@ -64,7 +65,7 @@ public class UI_Manager : MonoBehaviour
             UI_DialogueBubble dialogueGroup = GameObject.Instantiate(dialogueBubblePrefab, dialogueBubblePanel).GetComponent<UI_DialogueBubble>();
             spawnedBubbleDict.Add(dialogue, dialogueGroup);
         }
-        spawnedBubbleDict[dialogue].InitiateContent(dialogue.speakerName, dialogue.content, dialogue.speakerPos);
+        spawnedBubbleDict[dialogue].InitiateContent(dialogue.speakerName, dialogue.content, dialogue.speakerPos, bubbleStyle.GetStyle(dialogue.style));
         StartCoroutine(coroutineFadeInHeardDialogue(dialogue));
     }
     void HideDialogueBubble(DialogueCommand dialogue)

@@ -9,14 +9,25 @@ public class UI_DialogueBubble : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private TextMeshProUGUI dialogue;
     [SerializeField] private TextMeshProUGUI nameTag;
+    [SerializeField] private TextMeshProUGUI continueMarkTag;
     [SerializeField] private float dialogueFadeSpeed = 2;
-    private CanvasScaler canvasScaler;
-    public void InitiateContent(string speakerName, string speakContent, Vector3 uiPos)
+[Header("Style")]
+    [SerializeField] private Image contentImage;
+    [SerializeField] private Image continueMark;
+    [SerializeField] private Image nameTagBackground;
+    public void InitiateContent(string speakerName, string speakContent, Vector3 uiPos, DialogueBubble_Sytle style)
     {
         rectTransform.localPosition = uiPos;
         nameTag.text = speakerName;
         dialogue.text = speakContent;
-        canvasScaler = canvasGroup.GetComponentInParent<CanvasScaler>();
+
+        continueMarkTag.color = style.TextColor;
+        nameTag.color  = style.TextColor;
+        dialogue.color = style.TextColor;
+
+        nameTagBackground.color = style.NameColor;
+        contentImage.color = style.ContentColor;
+        continueMark.color = style.ContinueMarkColor;
     }
     public void UpdateDialoguePos(Vector3 uiPos)
     {
