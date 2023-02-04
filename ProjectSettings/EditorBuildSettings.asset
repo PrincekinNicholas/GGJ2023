@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Persistance.unity
     guid: e21fce447ac6e2d4e83209da69206ff1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Ground Level.unity
+    guid: bdbc35e94ce54434cb247d31bd635d36
   - enabled: 1
     path: Assets/Scenes/UnderGround Level.unity
     guid: 70f0774bdcb30d548825124643ec8654
