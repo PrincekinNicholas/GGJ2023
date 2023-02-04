@@ -2186,7 +2186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7bd6e66a2531fe488367b53ccc60d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speaker: {fileID: 0}
+  bossDialogue:
+    content: Hello World
+    speakerName: Boss
+    speakerPos: {x: 0, y: 0}
+    style: 0
+    lifeTime: 5
 --- !u!4 &1724051246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4500426749249253925, guid: 8a8038da96c61b94e8a4d607eafc9840, type: 3}
@@ -2984,6 +2989,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3849324627245032380, guid: 7d141641000e76443b7e9f80216e0faa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5688533078564999623, guid: 7d141641000e76443b7e9f80216e0faa, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -3006,7 +3015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6867553144692495103, guid: 7d141641000e76443b7e9f80216e0faa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.56
+      value: -32.57
       objectReference: {fileID: 0}
     - target: {fileID: 6867553144692495103, guid: 7d141641000e76443b7e9f80216e0faa, type: 3}
       propertyPath: m_LocalPosition.y
