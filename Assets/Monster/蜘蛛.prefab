@@ -158,6 +158,7 @@ MonoBehaviour:
   spiderTrans: {fileID: 7816469892701140731}
   spiderRotateAnime: {fileID: 7816469893584719834}
   fallRange: 4.3
+  BackHeight: 2.1
   fallTime: 2
   backTime: 4
   shakeTime: 4

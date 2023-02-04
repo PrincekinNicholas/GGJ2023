@@ -7,7 +7,8 @@ public class Spider : MonoBehaviour
     [SerializeField] private SPIDER_STATE monsterState = SPIDER_STATE.GUARD;
     [SerializeField] private Transform spiderTrans;
     [SerializeField] private Animator spiderRotateAnime;
-    [SerializeField] private float fallRange;
+    [SerializeField, Tooltip("蜘蛛掉落的高度")] private float fallRange;
+    [SerializeField, Tooltip("蜘蛛回升的高度")] private float BackHeight;
     [SerializeField] private float fallTime;
     [SerializeField] private float backTime;
     [SerializeField] private float shakeTime;

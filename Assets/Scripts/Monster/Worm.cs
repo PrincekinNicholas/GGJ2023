@@ -16,10 +16,15 @@ public class Worm : MonoBehaviour{
     [SerializeField] private float moveStep;
     [SerializeField] private float moveFreq;
     [SerializeField] private float alertMoveFreq;
+
+    [SerializeField] private Vector2 collisionDetectionSize;
+    [SerializeField] private LayerMask collisionLayer;
+    [SerializeField] private float collisionDetectionStep;
     private bool squish = false;
 
     private float direction = 1;
     private float delta;
+    private float collisionTime;
     private Vector3 guardPos;
 
     [SerializeField] private WORM_STATE monsterState = WORM_STATE.GUARD;
@@ -29,6 +34,7 @@ public class Worm : MonoBehaviour{
     private void Awake(){
         guardPos = transform.position;
         m_sprite = GetComponent<SpriteRenderer>();
+        collisionTime = Time.time;
         delta = 0;
     }
     void Update(){
@@ -79,8 +85,21 @@ public class Worm : MonoBehaviour{
             squish = !squish;
             if (squish) m_sprite.sprite = wormSquish;
             else m_sprite.sprite = wormStretch;
+            transform.position += Vector3.right * direction * moveStep;
         }
-        transform.position += Vector3.right * direction * moveStep * freq * Time.deltaTime;
+
+        CollisionDetection();
+    }
+    void CollisionDetection()
+    {
+        if(Physics2D.OverlapBox(transform.position, collisionDetectionSize, 0, collisionLayer) && Time.time - collisionTime > collisionDetectionStep)
+        {
+            collisionTime = Time.time;
+            //transform -= 2 * Vector3.right * direction * maxSpeed * Time.deltaTime;
+            //direction *= -1;
+            //speed = maxSpeed * 0.5f;
+            m_sprite.flipX = !m_sprite.flipX;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
