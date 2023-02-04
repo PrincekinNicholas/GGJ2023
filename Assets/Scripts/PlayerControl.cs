@@ -124,7 +124,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         m_input.DeactivateInput();
         GetComponent<Collider2D>().enabled = false;
 
-        Time.timeScale = 0;
+        Time.timeScale = 0.15f;
         yield return new WaitForSecondsRealtime(.35f);
 
         Time.timeScale = 0.5f;
