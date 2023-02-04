@@ -22,7 +22,7 @@ public class Worm : MonoBehaviour{
     private float delta;
     private Vector3 guardPos;
 
-    [SerializeField] private MONSTER_STATE monsterState = MONSTER_STATE.GUARD;
+    [SerializeField] private WORM_STATE monsterState = WORM_STATE.GUARD;
 
     private SpriteRenderer m_sprite;
     private Transform m_playerTrans;
@@ -33,12 +33,12 @@ public class Worm : MonoBehaviour{
     }
     void Update(){
         switch (monsterState) {
-            case MONSTER_STATE.GUARD:
+            case WORM_STATE.GUARD:
                 Move(moveFreq);
                 FaceDirection();
 
                 break;
-            case MONSTER_STATE.ALERT:
+            case WORM_STATE.ALERT:
                 Move(alertMoveFreq);
                 FacePlayer();
 
@@ -84,7 +84,7 @@ public class Worm : MonoBehaviour{
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        monsterState = MONSTER_STATE.ALERT;
+        monsterState = WORM_STATE.ALERT;
         stretchCollider.SetActive(false);
         squishCollider.SetActive(true);
         m_playerTrans = collision.transform;
@@ -92,7 +92,7 @@ public class Worm : MonoBehaviour{
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        monsterState = MONSTER_STATE.GUARD;
+        monsterState = WORM_STATE.GUARD;
         stretchCollider.SetActive(true);
         squishCollider.SetActive(false);
         GetComponent<CircleCollider2D>().radius = detectRange;
