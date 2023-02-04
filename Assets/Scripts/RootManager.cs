@@ -17,4 +17,9 @@ public class RootManager : MonoBehaviour
         rootCount ++;
         EventHandler.Call_UI_RefreshRootCount(rootCount);
     }
+
+    public int GetRootCount()
+    {
+        return rootCount;
+    }
 }
