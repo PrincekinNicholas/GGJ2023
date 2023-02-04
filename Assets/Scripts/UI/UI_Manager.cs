@@ -20,6 +20,7 @@ public class UI_Manager : MonoBehaviour
         EventHandler.E_UI_OnSubtitle += ShowSubtitle;
         EventHandler.E_UI_OnShowDialogueBubble += ShowDialogueBubble;
         EventHandler.E_UI_OnHideDialogueBubble += HideDialogueBubble;
+        EventHandler.E_OnBeforeSceneUnload += CleanUpDialogues;
     }
     private void OnDestroy()
     {
@@ -27,6 +28,7 @@ public class UI_Manager : MonoBehaviour
         EventHandler.E_UI_OnSubtitle -= ShowSubtitle;
         EventHandler.E_UI_OnShowDialogueBubble -= ShowDialogueBubble;
         EventHandler.E_UI_OnHideDialogueBubble -= HideDialogueBubble;
+        EventHandler.E_OnBeforeSceneUnload -= CleanUpDialogues;
     }
     [ContextMenu("Test Spawn Dialogue")]
     void SpawnDialogue()
