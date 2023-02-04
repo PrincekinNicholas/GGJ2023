@@ -5,9 +5,18 @@ using UnityEngine;
 public class Spider : MonoBehaviour
 {
     [SerializeField] private MONSTER_STATE monsterState = MONSTER_STATE.GUARD;
+    [SerializeField] private Transform spiderTrans;
     [SerializeField] private float fallRange;
     [SerializeField] private float fallTime;
     [SerializeField] private AnimationCurve fallCurve;
+    private bool shake = false;
+    private Vector3 targetPos, initPos;
+    private float fallDelta;
+    private void Awake()
+    {
+        targetPos = spiderTrans.position + Vector3.down * fallRange;
+        initPos = spiderTrans.position;
+    }
     private void Update()
     {
         switch (monsterState)
@@ -15,7 +24,16 @@ public class Spider : MonoBehaviour
             case MONSTER_STATE.GUARD:
                 break;
             case MONSTER_STATE.ALERT:
+                if (!shake)
+                {
+                    fallDelta += Time.deltaTime / fallTime;
+                    spiderTrans.position = Vector3.LerpUnclamped(initPos, targetPos, fallCurve.Evaluate(fallDelta));
+                    if (fallDelta >= 1) shake = true;
+                }
+                else
+                {
 
+                }
                 break;
         }
     }
