@@ -17,7 +17,7 @@ public class Worm : MonoBehaviour{
     [SerializeField] private float moveFreq;
     [SerializeField] private float alertMoveFreq;
 
-    [SerializeField] private Vector2 collisionDetectionSize;
+    [SerializeField] private float detectDistance;
     [SerializeField] private LayerMask collisionLayer;
     [SerializeField] private float collisionDetectionStep;
     private bool squish = false;
@@ -92,7 +92,7 @@ public class Worm : MonoBehaviour{
     }
     void CollisionDetection()
     {
-        if(Physics2D.OverlapBox(transform.position, collisionDetectionSize, 0, collisionLayer) && Time.time - collisionTime > collisionDetectionStep)
+        if(Physics2D.Raycast(transform.position, Vector2.right * direction, detectDistance, collisionLayer) && Time.time - collisionTime > collisionDetectionStep)
         {
             collisionTime = Time.time;
             transform.position -= Vector3.right * direction * moveStep * Time.deltaTime;
@@ -104,7 +104,7 @@ public class Worm : MonoBehaviour{
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0, 1, 0, 0.5f);
-        Gizmos.DrawCube(transform.position, collisionDetectionSize);
+        Gizmos.DrawRay(transform.position, Vector2.right * direction * detectDistance);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

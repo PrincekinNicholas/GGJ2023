@@ -295,9 +295,9 @@ MonoBehaviour:
   moveStep: 0.4
   moveFreq: 0.75
   alertMoveFreq: 3
-  collisionDetectionSize: {x: 0, y: 0}
+  detectDistance: 0.75
   collisionLayer:
     serializedVersion: 2
     m_Bits: 64
-  collisionDetectionStep: 0
+  collisionDetectionStep: 0.05
   monsterState: 0

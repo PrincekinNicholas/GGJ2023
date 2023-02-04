@@ -1173,25 +1173,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1039691468, guid: bab54a8293cce444ab3fe52003059445, type: 3}
-      propertyPath: collisionDetectionStep
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 1039691468, guid: bab54a8293cce444ab3fe52003059445, type: 3}
-      propertyPath: collisionDetectionSize.x
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1039691468, guid: bab54a8293cce444ab3fe52003059445, type: 3}
-      propertyPath: collisionDetectionSize.y
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 7685330833925888501, guid: bab54a8293cce444ab3fe52003059445, type: 3}
       propertyPath: m_Name
       value: "\u86AF\u8693"
-      objectReference: {fileID: 0}
-    - target: {fileID: 7685330833925888501, guid: bab54a8293cce444ab3fe52003059445, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7685330833925888503, guid: bab54a8293cce444ab3fe52003059445, type: 3}
       propertyPath: m_RootOrder
