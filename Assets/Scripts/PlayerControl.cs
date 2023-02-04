@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer), typeof(Animator), typeof(PlayerInput))]
+[RequireComponent(typeof(Animator), typeof(PlayerInput))]
 public class PlayerControl : MonoBehaviour{
     [SerializeField] private PLAYER_STATE playerState = PLAYER_STATE.DEFAULT;
 [Header("Basic Movement")]
@@ -26,13 +26,15 @@ public class PlayerControl : MonoBehaviour{
     private string jumpTrigger   = "Jump";
 
     private Rigidbody2D m_rigid;
+    private CircleCollider2D m_collider;
     private SpriteRenderer m_sprite;
     private Animator m_animator;
     private PlayerInput m_input;
     private float direction = 0;
     private void Awake(){
+        m_sprite   = GetComponentInChildren<SpriteRenderer>();
+        m_collider = GetComponent<CircleCollider2D>();
         m_rigid    = GetComponent<Rigidbody2D>();
-        m_sprite   = GetComponent<SpriteRenderer>();
         m_animator = GetComponent<Animator>();
         m_input    = GetComponent<PlayerInput>();
     }
@@ -85,6 +87,31 @@ public class PlayerControl : MonoBehaviour{
         vel.x = Mathf.Lerp(vel.x, direction * speed, Time.fixedDeltaTime * speedSmooth);
         m_rigid.velocity = vel;
     }
+    public void Kill(){
+        StartCoroutine(CoroutinePlayDead());
+    }
+    void ScaleCollisionBox(float scale)
+    {
+        m_collider.offset = Vector2.up * scale;
+        m_collider.radius = scale;
+    }
+    IEnumerator CoroutinePlayDead() {
+        m_rigid.isKinematic = true;
+        m_rigid.velocity = Vector2.zero;
+        m_input.DeactivateInput();
+        GetComponent<Collider2D>().enabled = false;
+
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(.5f);
+
+        Time.timeScale = 0.5f;
+        m_animator.SetTrigger("Dead");
+        yield return new WaitForSecondsRealtime(1f);
+
+        Time.timeScale = 1f;
+        GameManager.Instance.RestartLevel();
+        yield return null;
+    }
     #region Input Action
     void OnMove(InputValue value){
         var moveAxis = value.Get<float>();
@@ -106,12 +133,14 @@ public class PlayerControl : MonoBehaviour{
             if(playerState == PLAYER_STATE.DEFAULT && onGround){
                 playerState = PLAYER_STATE.CROUCH;
                 m_animator.SetTrigger(crouchTrigger);
+                ScaleCollisionBox(0.3f);
             }
         }
         else {
             if(playerState == PLAYER_STATE.CROUCH){
                 playerState = PLAYER_STATE.DEFAULT;
                 m_animator.SetTrigger(standTrigger);
+                ScaleCollisionBox(0.4f);
             }
         }
     }
