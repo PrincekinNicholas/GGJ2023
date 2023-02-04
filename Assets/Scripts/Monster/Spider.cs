@@ -19,7 +19,7 @@ public class Spider : MonoBehaviour
     private void Awake()
     {
         targetPos = spiderTrans.localPosition + Vector3.down * fallRange;
-        backPos = spiderTrans.localPosition + Vector3.down * fallRange / 2;
+        backPos = spiderTrans.localPosition + Vector3.down * BackHeight;
         initPos = spiderTrans.localPosition;
     }
     private void Update()
