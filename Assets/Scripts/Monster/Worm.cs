@@ -79,8 +79,8 @@ public class Worm : MonoBehaviour{
             squish = !squish;
             if (squish) m_sprite.sprite = wormSquish;
             else m_sprite.sprite = wormStretch;
+            transform.position += Vector3.right * direction * moveStep;
         }
-        transform.position += Vector3.right * direction * moveStep * freq * Time.deltaTime;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
