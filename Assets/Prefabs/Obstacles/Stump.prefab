@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2343707717564166908}
   - component: {fileID: 2343707717564166909}
   m_Layer: 6
-  m_Name: Obstacle Stump
+  m_Name: Stump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

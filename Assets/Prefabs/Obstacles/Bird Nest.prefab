@@ -178,8 +178,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8270498406253585777}
   - component: {fileID: 8270498406253585775}
-  m_Layer: 0
-  m_Name: Obstacle Bird Nest
+  m_Layer: 6
+  m_Name: Bird Nest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
