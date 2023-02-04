@@ -14,8 +14,8 @@ public class Spider : MonoBehaviour
     private float fallDelta;
     private void Awake()
     {
-        targetPos = spiderTrans.position + Vector3.down * fallRange;
-        initPos = spiderTrans.position;
+        targetPos = spiderTrans.localPosition + Vector3.down * fallRange;
+        initPos = spiderTrans.localPosition;
     }
     private void Update()
     {
@@ -27,7 +27,7 @@ public class Spider : MonoBehaviour
                 if (!shake)
                 {
                     fallDelta += Time.deltaTime / fallTime;
-                    spiderTrans.position = Vector3.LerpUnclamped(initPos, targetPos, fallCurve.Evaluate(fallDelta));
+                    spiderTrans.localPosition = Vector3.LerpUnclamped(initPos, targetPos, fallCurve.Evaluate(fallDelta));
                     if (fallDelta >= 1) shake = true;
                 }
                 else
