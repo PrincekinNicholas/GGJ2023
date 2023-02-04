@@ -43,7 +43,7 @@ public class SkullPieces : MonoBehaviour
         if(Physics2D.OverlapBox(transform.position, overlapSize, 0, platformLayer) && Time.time - detectTime > detectStep)
         {
             detectTime = Time.time;
-            pos -= 2 * Vector3.right * direction * maxSpeed * Time.deltaTime;
+            transform.position -= Vector3.right * direction * maxSpeed * Time.deltaTime;
             direction *= -1;
             speed = maxSpeed*0.5f;
             m_sprite.flipX = !m_sprite.flipX;
