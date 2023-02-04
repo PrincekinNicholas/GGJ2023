@@ -6,6 +6,7 @@ public class Spider : MonoBehaviour
 {
     [SerializeField] private MONSTER_STATE monsterState = MONSTER_STATE.GUARD;
     [SerializeField] private Transform spiderTrans;
+    [SerializeField] private Animator spiderRotateAnime;
     [SerializeField] private float fallRange;
     [SerializeField] private float fallTime;
     [SerializeField] private AnimationCurve fallCurve;
@@ -30,15 +31,12 @@ public class Spider : MonoBehaviour
                     spiderTrans.localPosition = Vector3.LerpUnclamped(initPos, targetPos, fallCurve.Evaluate(fallDelta));
                     if (fallDelta >= 1) shake = true;
                 }
-                else
-                {
-
-                }
                 break;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         monsterState = MONSTER_STATE.ALERT;
+        spiderRotateAnime.SetTrigger("Rotate");
     }
 }
