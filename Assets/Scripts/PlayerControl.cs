@@ -24,6 +24,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
     private float airdriftSpeed;
     private float jumpForce;
     private bool isRunning = false;
+    private bool isDead = false;
 
     private string crouchTrigger = "Crouch";
     private string standTrigger  = "Stand";
@@ -93,7 +94,6 @@ public class PlayerControl : MonoBehaviour, ISlowable{
     }
     void CrouchHeadCheck()
     {
-        Debug.Log(Physics2D.Raycast(transform.position + Vector3.up * 0.62f, Vector3.up, 0.1f, platformLayer));
         if(Physics2D.Raycast(transform.position + Vector3.up*0.62f, Vector3.up, 0.1f, platformLayer))headBlocked = true;
         else headBlocked = false;
     }
@@ -108,7 +108,10 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         m_rigid.velocity = vel;
     }
     public void Kill(){
-        StartCoroutine(CoroutinePlayDead());
+        if (!isDead){
+            isDead = true;
+            StartCoroutine(CoroutinePlayDead());
+        }
     }
     void ScaleCollisionBox(float scale)
     {
@@ -122,7 +125,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         GetComponent<Collider2D>().enabled = false;
 
         Time.timeScale = 0;
-        yield return new WaitForSecondsRealtime(.5f);
+        yield return new WaitForSecondsRealtime(.35f);
 
         Time.timeScale = 0.5f;
         m_animator.SetTrigger("Dead");
