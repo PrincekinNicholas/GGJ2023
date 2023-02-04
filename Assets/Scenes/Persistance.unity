@@ -360,8 +360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueBubblePrefab: {fileID: 3879993573903214825, guid: b466aa499a9c9b14fbbf7f3bd28a2a4b, type: 3}
-  bubbleStyle: {fileID: 0}
-  dialogueBubblePanel: {fileID: 0}
+  bubbleStyle: {fileID: 11400000, guid: 5c83feb02f48c5a4c83c0c8c4e03b464, type: 2}
+  dialogueBubblePanel: {fileID: 1669986790}
   subtitleText: {fileID: 1130134265}
   rootAmount: {fileID: 1681596786}
 --- !u!1 &1130134263
@@ -625,7 +625,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1480478306
 MonoBehaviour:
   m_ObjectHideFlags: 0

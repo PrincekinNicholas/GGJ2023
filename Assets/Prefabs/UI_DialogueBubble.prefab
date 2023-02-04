@@ -421,7 +421,11 @@ MonoBehaviour:
   canvasGroup: {fileID: 8736606304951024305}
   dialogue: {fileID: 3879993573223754463}
   nameTag: {fileID: 3879993574091753253}
+  continueMarkTag: {fileID: 3879993573204550104}
   dialogueFadeSpeed: 1
+  contentImage: {fileID: 3879993573903214831}
+  continueMark: {fileID: 3879993574165872415}
+  nameTagBackground: {fileID: 3879993574850773278}
 --- !u!1 &3879993574091753255
 GameObject:
   m_ObjectHideFlags: 0
