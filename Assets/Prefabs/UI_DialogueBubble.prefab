@@ -283,6 +283,8 @@ GameObject:
   - component: {fileID: 3879993573903214831}
   - component: {fileID: 3879993573903214829}
   - component: {fileID: 3879993573903214828}
+  - component: {fileID: 8736606304951024305}
+  - component: {fileID: 6631205307943217152}
   m_Layer: 5
   m_Name: UI_DialogueBubble
   m_TagString: Untagged
@@ -311,7 +313,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 165.40399, y: 36.01352}
-  m_SizeDelta: {x: 900, y: 238.31}
+  m_SizeDelta: {x: 900, y: 0}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3879993573903214830
 CanvasRenderer:
@@ -391,6 +393,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!225 &8736606304951024305
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879993573903214825}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &6631205307943217152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879993573903214825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51964864c1ca62046bf569dcedb1947e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectTransform: {fileID: 3879993573903214824}
+  canvasGroup: {fileID: 8736606304951024305}
+  dialogue: {fileID: 3879993573223754463}
+  nameTag: {fileID: 3879993574091753253}
+  dialogueFadeSpeed: 2
 --- !u!1 &3879993574091753255
 GameObject:
   m_ObjectHideFlags: 0

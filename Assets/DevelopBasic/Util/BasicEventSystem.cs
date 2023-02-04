@@ -15,6 +15,10 @@ public static class EventHandler
     public static void Call_UI_RefreshRootCount(int rootCount) => E_UI_RefreshRootCount?.Invoke(rootCount);
     public static event Action<string> E_UI_OnSubtitle;
     public static void Call_UI_OnSubtitle(string content) => E_UI_OnSubtitle?.Invoke(content);
+    public static Action<DialogueCommand> E_UI_OnShowDialogueBubble;
+    public static void Call_UI_OnShowDialogueBubble(DialogueCommand dialogueCommand) => E_UI_OnShowDialogueBubble?.Invoke(dialogueCommand);
+    public static Action<DialogueCommand> E_UI_OnHideDialogueBubble;
+    public static void Call_UI_OnHideDialougeBubble(DialogueCommand dialogueCommand) => E_UI_OnHideDialogueBubble?.Invoke(dialogueCommand);
 #endregion
 }
 

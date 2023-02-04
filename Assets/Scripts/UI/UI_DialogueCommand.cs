@@ -6,14 +6,12 @@ public class DialogueCommand
 {
     public string content;
     public string speakerName;
-    public float y_Offset;
-    public Transform speakerTrans;
-    public DialogueCommand(string _content, string _speakerName, float _offset, Transform _speakerTrans)
+    public Vector2 speakerPos;
+    public DialogueCommand(string _content, string _speakerName, Vector2 _speakerPos)
     {
         this.content = _content;
         this.speakerName = _speakerName;
-        this.y_Offset = _offset;
-        this.speakerTrans = _speakerTrans;
+        this.speakerPos = _speakerPos;
     }
-    public static DialogueCommand EmptyDialgue = new DialogueCommand(string.Empty, string.Empty, 0, null);
+    public static DialogueCommand EmptyDialgue = new DialogueCommand(string.Empty, string.Empty, Vector2.one);
 }
