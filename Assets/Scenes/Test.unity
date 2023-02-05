@@ -395,7 +395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &624765516
 Transform:
   m_ObjectHideFlags: 0
@@ -869,6 +869,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss_Weak
       objectReference: {fileID: 0}
+    - target: {fileID: 2676479327331537280, guid: e04e6d27c141d374bbd6d171e5d938ea, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e04e6d27c141d374bbd6d171e5d938ea, type: 3}
 --- !u!4 &1668274031 stripped
@@ -1081,7 +1085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2034377221
 Transform:
   m_ObjectHideFlags: 0
