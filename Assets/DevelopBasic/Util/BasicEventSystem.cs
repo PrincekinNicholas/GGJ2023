@@ -10,6 +10,8 @@ public static class EventHandler
     public static void Call_OnBreakRoot() => E_OnBreakRoot?.Invoke();
     public static event Action E_OnBeforeSceneUnload;
     public static void Call_OnBeforeSceneUnload() => E_OnBeforeSceneUnload?.Invoke();
+    public static event Action E_OnAfterSceneLoaded;
+    public static void Call_OnAfterSceneLoaded() => E_OnAfterSceneLoaded?.Invoke();
 #region UI
     public static event Action<int> E_UI_RefreshRootCount;
     public static void Call_UI_RefreshRootCount(int rootCount) => E_UI_RefreshRootCount?.Invoke(rootCount);
