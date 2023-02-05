@@ -12,7 +12,8 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private Transform dialogueBubblePanel;
 [Header("Subtitle")]
     [SerializeField] private TextMeshProUGUI subtitleText;
-    [Header("Root Amount")]
+    [SerializeField] private TextMeshProUGUI subtitleText_Middle;
+[Header("Root Amount")]
     [SerializeField] private GameObject rootUI_Panel;
     [SerializeField] private TextMeshProUGUI rootAmount;
     [SerializeField] private Dictionary<DialogueCommand, UI_DialogueBubble> spawnedBubbleDict;
@@ -53,15 +54,17 @@ public class UI_Manager : MonoBehaviour
             }
         }
     }
-    void ShowSubtitle(string content)
+    void ShowSubtitle(string content, bool isMiddle = false)
     {
         if(content == null || content == string.Empty)
         {
             subtitleText.text = string.Empty;
+            subtitleText_Middle.text = string.Empty;
         }
         else
         {
-            subtitleText.text = content;
+            if (isMiddle) subtitleText_Middle.text = content;
+            else subtitleText.text = content;
         }
     }
     void CheckRootUI(string unloadSceneName)
@@ -105,6 +108,7 @@ public class UI_Manager : MonoBehaviour
     }
     void HideDialogueBubble(DialogueCommand dialogue)
     {
+        Debug.Log(spawnedBubbleDict.ContainsKey(dialogue));
         if (spawnedBubbleDict.ContainsKey(dialogue))
         {
             spawnedBubbleDict[dialogue].FadeContent(false);
