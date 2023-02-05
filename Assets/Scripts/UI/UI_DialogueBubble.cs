@@ -17,7 +17,10 @@ public class UI_DialogueBubble : MonoBehaviour
     [SerializeField] private Image contentImage;
     [SerializeField] private Image continueMark;
     [SerializeField] private Image nameTagBackground;
+    public bool autoFade { get; protected set; } = true;
+
     IEnumerator coroutineFade;
+
     public void InitiateContent(string speakerName, string speakContent, Vector3 uiPos, float lifeTime, DialogueBubble_Sytle style)
     {
         rectTransform.localPosition = uiPos;
@@ -33,6 +36,7 @@ public class UI_DialogueBubble : MonoBehaviour
         continueMark.color = style.ContinueMarkColor;
 
         this.lifeTime = lifeTime;
+        if (lifeTime <= -1) autoFade = false;
     }
     public void UpdateDialoguePos(Vector3 uiPos)
     {
@@ -40,7 +44,7 @@ public class UI_DialogueBubble : MonoBehaviour
     }
     public void DialogueUpdate()
     {
-        lifeTime -= Time.deltaTime;
+        if(autoFade) lifeTime -= Time.deltaTime;
     }
     public void FadeContent(bool isFadeIn)
     {

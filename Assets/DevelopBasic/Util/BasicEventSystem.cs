@@ -19,7 +19,11 @@ public static class EventHandler
     public static void Call_UI_OnShowDialogueBubble(DialogueCommand dialogueCommand) => E_UI_OnShowDialogueBubble?.Invoke(dialogueCommand);
     public static Action<DialogueCommand> E_UI_OnHideDialogueBubble;
     public static void Call_UI_OnHideDialougeBubble(DialogueCommand dialogueCommand) => E_UI_OnHideDialogueBubble?.Invoke(dialogueCommand);
-#endregion
+    #endregion
+    public static Action E_OnEnterCutscene;
+    public static void Call_OnEnterCutscene()=>E_OnEnterCutscene?.Invoke();
+    public static Action E_OnExitCutscene;
+    public static void Call_OnExitCutscene() => E_OnExitCutscene?.Invoke();
 }
 
 //A More Strict Event System

@@ -54,9 +54,13 @@ public class PlayerControl : MonoBehaviour, ISlowable{
     }
     void OnEnable(){
         EventHandler.E_OnBeforeSceneUnload += FreezeControl;
+        EventHandler.E_OnEnterCutscene     += PauseControl;
+        EventHandler.E_OnExitCutscene      += UnpauseControl;
     }
     void OnDisable(){
         EventHandler.E_OnBeforeSceneUnload -= FreezeControl;
+        EventHandler.E_OnEnterCutscene     -= PauseControl;
+        EventHandler.E_OnExitCutscene      -= UnpauseControl;
     }
     void Update(){
         GroundCheck();
@@ -73,7 +77,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
                 break;
             case PLAYER_STATE.CROUCH:
                 Move(crouchSpeed);
-                if (!headBlocked && !holdCrouch)
+                if (!holdCrouch && !headBlocked)
                 {
                     playerState = PLAYER_STATE.DEFAULT;
                     m_animator.SetTrigger(standTrigger);
@@ -94,7 +98,22 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         Gizmos.color = Color.green;
         Gizmos.DrawRay(transform.position + Vector3.up * 0.62f, Vector3.up * 0.1f);
     }
-    void FreezeControl()=>m_input.DeactivateInput();
+    void FreezeControl() => m_input.DeactivateInput();
+    void PauseControl()
+    {
+        m_input.DeactivateInput();
+        holdCrouch = false;
+        isRunning = false;
+        if(playerState == PLAYER_STATE.CROUCH)
+        {
+            StandUp();
+        }
+        direction = 0;
+    }
+    void UnpauseControl()
+    {
+        if(!isDead) m_input.ActivateInput();
+    }
     void GroundCheck(){
         if(Physics2D.OverlapCircle(transform.position, groundCheckRadius, platformLayer) != null) onGround = true;
         else onGround = false;
@@ -114,10 +133,10 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         vel.x = Mathf.Lerp(vel.x, direction * speed, Time.fixedDeltaTime * speedSmooth);
         m_rigid.velocity = vel;
     }
-    public void Kill(){
+    public void Kill(bool restartAfterDeath = true){
         if (!isDead){
             isDead = true;
-            StartCoroutine(CoroutinePlayDead());
+            StartCoroutine(CoroutinePlayDead(restartAfterDeath));
         }
     }
     void ScaleCollisionBox(float scale)
@@ -125,7 +144,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         m_collider.offset = Vector2.up * scale;
         m_collider.radius = scale;
     }
-    IEnumerator CoroutinePlayDead() {
+    IEnumerator CoroutinePlayDead(bool restartAfterDeath) {
         m_rigid.isKinematic = true;
         m_rigid.velocity = Vector2.zero;
         m_input.DeactivateInput();
@@ -138,10 +157,22 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         Time.timeScale = 0.5f;
         m_animator.SetTrigger("Dead");
         yield return new WaitForSecondsRealtime(1f);
-
         Time.timeScale = 1f;
-        GameManager.Instance.RestartLevel();
+
+        if (restartAfterDeath)
+        {
+            GameManager.Instance.RestartLevel();
+        }
         yield return null;
+    }
+    void StandUp()
+    {
+        if (playerState == PLAYER_STATE.CROUCH && !headBlocked)
+        {
+            playerState = PLAYER_STATE.DEFAULT;
+            m_animator.SetTrigger(standTrigger);
+            ScaleCollisionBox(0.4f);
+        }
     }
     #region Interaface
     public void SlowDown(float factor) {
@@ -191,12 +222,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         }
         else {
             holdCrouch = false;
-            if (playerState == PLAYER_STATE.CROUCH && !headBlocked)
-            {
-                playerState = PLAYER_STATE.DEFAULT;
-                m_animator.SetTrigger(standTrigger);
-                ScaleCollisionBox(0.4f);
-            }
+            StandUp();
         }
     }
     void OnJump(InputValue value){
