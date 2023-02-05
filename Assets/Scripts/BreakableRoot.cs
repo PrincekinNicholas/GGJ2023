@@ -10,6 +10,9 @@ public class BreakableRoot : MonoBehaviour{
     [SerializeField] private bool canBreak = true;
     [SerializeField] private float MinHitVelocity = 6;
     [SerializeField] private int MaxHitAllowed = 3;
+[Header("Audio")]
+    [SerializeField] private AudioSource rootSource;
+    [SerializeField] private AudioClip rootClip;
     private string stepOnRoot_Anim_Name = "StepOnRoot";
     private string stepOnRootHeavy_Anim_Name = "StepOnRoot Heavy";
     private int hitCount = 0;
@@ -21,12 +24,17 @@ public class BreakableRoot : MonoBehaviour{
                 if(canBreak)hitCount++;
                 rootAnimation.Play(stepOnRootHeavy_Anim_Name);
                 if (hitCount == MaxHitAllowed) {
+                    rootSource.PlayOneShot(rootClip, 1f);
+
                     rootSprite.gameObject.SetActive(false);
                     breakedBranch.gameObject.SetActive(true);
                     this.GetComponent<Collider2D>().enabled = false;
                     alreadyBroken = true;
 
                     EventHandler.Call_OnBreakRoot();
+                }
+                else{
+                    rootSource.PlayOneShot(rootClip, 0.1f);
                 }
             }
             else {
@@ -37,6 +45,7 @@ public class BreakableRoot : MonoBehaviour{
 
     public bool GetAlreadyBorkenValue()
     {
+        rootSource.PlayOneShot(rootClip, 1);
         return alreadyBroken;
     }
 }
