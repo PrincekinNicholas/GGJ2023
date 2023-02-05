@@ -203,8 +203,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: I LIKE MAKING GAMES.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: df7922d8550d7304b8779eed8a5c7dc7, type: 2}
-  m_sharedMaterial: {fileID: 5563668618616159881, guid: df7922d8550d7304b8779eed8a5c7dc7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 42c05b790abbeb0459edc91fcd966829, type: 2}
+  m_sharedMaterial: {fileID: -969757617119671547, guid: 42c05b790abbeb0459edc91fcd966829, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -401,7 +401,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3879993573903214825}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -423,6 +423,7 @@ MonoBehaviour:
   nameTag: {fileID: 3879993574091753253}
   continueMarkTag: {fileID: 3879993573204550104}
   dialogueFadeSpeed: 1
+  lifeTime: 0
   contentImage: {fileID: 3879993573903214831}
   continueMark: {fileID: 3879993574165872415}
   nameTagBackground: {fileID: 3879993574850773278}
@@ -492,10 +493,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CAT
+  m_text: "\u82F1\u96C4"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: df7922d8550d7304b8779eed8a5c7dc7, type: 2}
-  m_sharedMaterial: {fileID: 5563668618616159881, guid: df7922d8550d7304b8779eed8a5c7dc7, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 42c05b790abbeb0459edc91fcd966829, type: 2}
+  m_sharedMaterial: {fileID: -969757617119671547, guid: 42c05b790abbeb0459edc91fcd966829, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
