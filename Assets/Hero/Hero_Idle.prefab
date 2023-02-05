@@ -242,7 +242,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &6867553144692495077
 CircleCollider2D:
@@ -438,8 +438,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   MaxjumpForce: 6
-  groundCheckRadius: 0.39
-  groundCheckHeight: 0.36
+  groundCheckRadius: 0.35
+  groundCheckHeight: 0.32
   holdCrouch: 0
   headBlocked: 0
   playerSource: {fileID: 5203171314751097990}
