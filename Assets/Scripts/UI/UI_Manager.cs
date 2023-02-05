@@ -108,6 +108,7 @@ public class UI_Manager : MonoBehaviour
     }
     void HideDialogueBubble(DialogueCommand dialogue)
     {
+        Debug.Log(spawnedBubbleDict.ContainsKey(dialogue));
         if (spawnedBubbleDict.ContainsKey(dialogue))
         {
             spawnedBubbleDict[dialogue].FadeContent(false);

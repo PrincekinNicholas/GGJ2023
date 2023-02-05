@@ -118,9 +118,9 @@ public class GameManager : Singleton<GameManager>
             EventHandler.Call_OnBeforeSceneUnload();
             yield return FadeInScreen(transitionDuration);
             yield return SceneManager.UnloadSceneAsync(from);
+            EventHandler.Call_OnAfterSceneUnload(from);
         }
         //TO DO: do something after the last scene is unloaded.
-        EventHandler.Call_OnAfterSceneUnload(from);
         yield return SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(to));
         //TO DO: do something after the next scene is loaded. e.g: call event of loading
