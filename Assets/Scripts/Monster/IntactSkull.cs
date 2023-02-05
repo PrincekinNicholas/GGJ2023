@@ -15,6 +15,9 @@ public class IntactSkull : MonoBehaviour
     [SerializeField] private Animation separate_Animation;
     [SerializeField] private SkullPieces headPiece;
     [SerializeField] private SkullPieces jawPieces;
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip alertClip;
     private float direction = 1;
     private float floatDelta;
     private float jawTurningDelta;
@@ -50,6 +53,7 @@ public class IntactSkull : MonoBehaviour
                 {
                     separated = true;
                     this.enabled = false;
+                    audioSource.PlayOneShot(alertClip);
                     StartCoroutine(coroutineSeparate());
                     GetComponent<Collider2D>().enabled = false;
                 }

@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 6867553144692495098}
   - component: {fileID: 6867553144692495077}
   - component: {fileID: 5203171314751097990}
+  - component: {fileID: 1654126643475596340}
   - component: {fileID: 6867553144692495102}
   - component: {fileID: 6867553144692495097}
   - component: {fileID: 6867553144692495096}
@@ -355,6 +356,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &1654126643475596340
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6867553144692495101}
+  m_Enabled: 1
 --- !u!95 &6867553144692495102
 Animator:
   serializedVersion: 5
@@ -432,5 +441,5 @@ MonoBehaviour:
   holdCrouch: 0
   headBlocked: 0
   playerSource: {fileID: 5203171314751097990}
-  jumpClip: {fileID: 8300000, guid: 94d56e7f70a51c94e8dd125e1cc718e4, type: 3}
-  walkClip: {fileID: 0}
+  jumpClip: {fileID: 8300000, guid: 476723c706bf4034596cee76092c3dc2, type: 3}
+  deadClip: {fileID: 8300000, guid: 8d2ae534cbce1ae4191ccd9d2373f1f5, type: 3}

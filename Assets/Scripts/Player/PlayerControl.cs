@@ -24,7 +24,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
 [Header("Sound")]
     [SerializeField] private AudioSource playerSource;
     [SerializeField] private AudioClip jumpClip;
-    [SerializeField] private AudioClip walkClip;
+    [SerializeField] private AudioClip deadClip;
     private float airdriftSpeed;
     private float jumpForce;
     private bool isRunning = false;
@@ -41,6 +41,8 @@ public class PlayerControl : MonoBehaviour, ISlowable{
     private Animator m_animator;
     private PlayerInput m_input;
     private float direction = 0;
+
+    public Vector3 velocity { get { return m_rigid.velocity; } }
     private void Awake(){
         m_sprite   = GetComponentInChildren<SpriteRenderer>();
         m_collider = GetComponent<CircleCollider2D>();
@@ -128,6 +130,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         m_input.DeactivateInput();
         GetComponent<Collider2D>().enabled = false;
 
+        playerSource.PlayOneShot(deadClip);
         Time.timeScale = 0.15f;
         yield return new WaitForSecondsRealtime(.35f);
 
