@@ -98,6 +98,7 @@ public class GameManager : Singleton<GameManager>
         yield return SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(level));
         //TO DO: do something after the next scene is loaded. e.g: call event of loading
+        EventHandler.Call_OnAfterSceneLoaded();
         yield return FadeOutScreen(transitionDuration);
 
         isSwitchingScene = false;
@@ -121,6 +122,7 @@ public class GameManager : Singleton<GameManager>
         yield return SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(to));
         //TO DO: do something after the next scene is loaded. e.g: call event of loading
+        EventHandler.Call_OnAfterSceneLoaded();
         yield return FadeOutScreen(transitionDuration);
 
         isSwitchingScene = false;
@@ -136,7 +138,7 @@ public class GameManager : Singleton<GameManager>
         //TO DO: do something before the next scene is loaded. e.g: call event of saving 
         yield return SceneManager.LoadSceneAsync(to);
         //TO DO: do something after the next scene is loaded. e.g: call event of loading
-
+        EventHandler.Call_OnAfterSceneLoaded();
         isSwitchingScene = false;
     }
     public IEnumerator FadeInScreen(float fadeDuration){
