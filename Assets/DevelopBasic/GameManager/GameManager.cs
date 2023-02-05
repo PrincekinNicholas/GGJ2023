@@ -95,6 +95,7 @@ public class GameManager : Singleton<GameManager>
         yield return SceneManager.UnloadSceneAsync(level);
         yield return null;
         //TO DO: do something after the last scene is unloaded.
+        EventHandler.Call_OnAfterSceneUnload(level);
         yield return SceneManager.LoadSceneAsync(level, LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(level));
         //TO DO: do something after the next scene is loaded. e.g: call event of loading
@@ -119,6 +120,7 @@ public class GameManager : Singleton<GameManager>
             yield return SceneManager.UnloadSceneAsync(from);
         }
         //TO DO: do something after the last scene is unloaded.
+        EventHandler.Call_OnAfterSceneUnload(from);
         yield return SceneManager.LoadSceneAsync(to, LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(to));
         //TO DO: do something after the next scene is loaded. e.g: call event of loading

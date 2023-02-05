@@ -8,10 +8,12 @@ public class RootManager : MonoBehaviour
     private void Awake()
     {
         EventHandler.E_OnBreakRoot += BreakOneRoot;
+        //EventHandler.E_OnAfterSceneLoaded +=
     }
     private void OnDestroy()
     {
         EventHandler.E_OnBreakRoot -= BreakOneRoot;
+        //EventHandler.E_OnAfterSceneLoaded -= 
     }
     public void BreakOneRoot(){
         rootCount ++;

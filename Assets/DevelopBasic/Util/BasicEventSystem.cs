@@ -6,8 +6,8 @@ using UnityEngine;
 //A basic C# Event System
 public static class EventHandler
 {
-    public static event Action E_OnBreakRoot;
-    public static void Call_OnBreakRoot() => E_OnBreakRoot?.Invoke();
+    public static event Action<string> E_OnAfterSceneUnload;
+    public static void Call_OnAfterSceneUnload(string sceneName) { E_OnAfterSceneUnload(sceneName);}
     public static event Action E_OnBeforeSceneUnload;
     public static void Call_OnBeforeSceneUnload() => E_OnBeforeSceneUnload?.Invoke();
     public static event Action E_OnAfterSceneLoaded;
@@ -26,6 +26,8 @@ public static class EventHandler
     public static void Call_OnEnterCutscene()=>E_OnEnterCutscene?.Invoke();
     public static Action E_OnExitCutscene;
     public static void Call_OnExitCutscene() => E_OnExitCutscene?.Invoke();
+    public static event Action E_OnBreakRoot;
+    public static void Call_OnBreakRoot() => E_OnBreakRoot?.Invoke();
 }
 
 //A More Strict Event System
