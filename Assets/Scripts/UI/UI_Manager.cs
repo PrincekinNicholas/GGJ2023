@@ -37,12 +37,15 @@ public class UI_Manager : MonoBehaviour
         if (playedCommand == null || playedCommand.Count == 0) return;
         for(int i=0; i< playedCommand.Count; i++)
         {
-            var dialogue = spawnedBubbleDict[playedCommand[i]];
-            dialogue.DialogueUpdate();
-            if (dialogue.TimeUp)
+            if(spawnedBubbleDict[playedCommand[i]] != null)
             {
-                StartCoroutine(dialogue.coroutineFadeContent(false));
-                continue;
+                var dialogue = spawnedBubbleDict[playedCommand[i]];
+                dialogue.DialogueUpdate();
+                if (dialogue.TimeUp)
+                {
+                    StartCoroutine(dialogue.coroutineFadeContent(false));
+                    continue;
+                }
             }
         }
     }

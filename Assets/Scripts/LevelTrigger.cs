@@ -7,9 +7,7 @@ public class LevelTrigger : MonoBehaviour
     [SerializeField] private string nextLevelName;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == Service.playerTag)
-        {
-            GameManager.Instance.SwitchingScene(nextLevelName);
-        }
+        print(nextLevelName);
+        GameManager.Instance.SwitchingScene(nextLevelName);
     }
 }
