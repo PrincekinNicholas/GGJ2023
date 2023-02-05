@@ -2298,6 +2298,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6867553144692495096, guid: 7d141641000e76443b7e9f80216e0faa, type: 3}
+      propertyPath: godMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6867553144692495096, guid: 7d141641000e76443b7e9f80216e0faa, type: 3}
       propertyPath: jumpForce
       value: 6
       objectReference: {fileID: 0}
