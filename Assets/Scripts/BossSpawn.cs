@@ -11,8 +11,6 @@ public class BossSpawn : MonoBehaviour
     {
         BreakableRoot breakableRoot = BreakableTreeBranch.GetComponent<BreakableRoot>();
         bool isWeak = breakableRoot.GetAlreadyBorkenValue();
-        print(breakableRoot.name);
-        print(isWeak);
 
         if( isWeak )
         {
@@ -31,7 +29,6 @@ public class BossSpawn : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Hello World");
         SwitchBoss();
     }
 }
