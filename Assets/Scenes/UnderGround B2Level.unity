@@ -479,7 +479,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &516224427
 Transform:
   m_ObjectHideFlags: 0
@@ -1592,7 +1592,7 @@ Camera:
   far clip plane: 10
   field of view: 60
   orthographic: 1
-  orthographic size: 3.34
+  orthographic size: 4
   m_Depth: -5
   m_CullingMask:
     serializedVersion: 2
@@ -1684,6 +1684,11 @@ PrefabInstance:
 --- !u!4 &1387082217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5793011029765133466, guid: eec48ac75f6e5cb499de69459e938959, type: 3}
+  m_PrefabInstance: {fileID: 1387082216}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &1387082218 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 534974514, guid: eec48ac75f6e5cb499de69459e938959, type: 3}
   m_PrefabInstance: {fileID: 1387082216}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1499082930
@@ -2771,6 +2776,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1168566888}
     m_Modifications:
+    - target: {fileID: 2061109227784639814, guid: 9324bfc168a70574487c618b776a8449, type: 3}
+      propertyPath: nextScene
+      value: UnderGround RB2Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061109227784639814, guid: 9324bfc168a70574487c618b776a8449, type: 3}
+      propertyPath: cam_rotate_anime
+      value: 
+      objectReference: {fileID: 1387082218}
     - target: {fileID: 5997925209564960772, guid: 9324bfc168a70574487c618b776a8449, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2781,7 +2794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5997925209564960772, guid: 9324bfc168a70574487c618b776a8449, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.69
+      value: -0.78
       objectReference: {fileID: 0}
     - target: {fileID: 5997925209564960772, guid: 9324bfc168a70574487c618b776a8449, type: 3}
       propertyPath: m_LocalPosition.z

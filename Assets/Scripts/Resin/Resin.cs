@@ -24,6 +24,7 @@ public class Resin : MonoBehaviour
             {
                 control = collision.gameObject.GetComponent<PlayerControl>();
                 m_vfx_mudDot.Play();
+                if (!resinSource.isPlaying) resinSource.Play();
             }
         }
     }
@@ -36,7 +37,6 @@ public class Resin : MonoBehaviour
             m_vfx_mudDot.transform.position = pos;
             if (control)
             {
-                if(!resinSource.isPlaying) resinSource.Play();
                 //resinSource.volume = Mathf.Lerp();
             }
             if (control == null && resinSource.isPlaying) resinSource.Stop();
@@ -56,6 +56,7 @@ public class Resin : MonoBehaviour
             {
                 control = null;
                 m_vfx_mudDot.Stop();
+                if (resinSource.isPlaying) resinSource.Stop();
             }
         }
     }

@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5997925209564960774}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 25.44, y: -0.69, z: 0}
   m_LocalScale: {x: 7.7934, y: 7.7934, z: 1}
   m_ConstrainProportionsScale: 0
@@ -156,3 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36bdbe544b4a8ab44ae8974ff92f3902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossWords:
+    content: "\u4F60\u6BC1\u6389\u4E86\u6211\uFF0C\u4F46\u4E5F\u89E3\u6551\u4E86\u6211\uFF0C\u63A5\u53D7\u81EA\u5DF1\u6240\u9009\u62E9\u7684\u7ED3\u5C40\u5427\u3002"
+    speakerName: "\u796D\u53F8"
+    speakerPos: {x: 300, y: 0}
+    style: 0
+    lifeTime: -1
