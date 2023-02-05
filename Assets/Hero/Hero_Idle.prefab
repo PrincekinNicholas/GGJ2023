@@ -174,7 +174,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -1418588773, guid: bf5b1cbf7a3edcd4b89304e6886f7bb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -242,7 +242,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 2
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &6867553144692495077
 CircleCollider2D:
@@ -438,7 +438,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   MaxjumpForce: 6
-  groundCheckRadius: 0.05
+  groundCheckRadius: 0.35
+  groundCheckHeight: 0.32
   holdCrouch: 0
   headBlocked: 0
   playerSource: {fileID: 5203171314751097990}

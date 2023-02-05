@@ -12,10 +12,11 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private Transform dialogueBubblePanel;
 [Header("Subtitle")]
     [SerializeField] private TextMeshProUGUI subtitleText;
-[Header("Root Amount")]
+    [Header("Root Amount")]
+    [SerializeField] private GameObject rootUI_Panel;
     [SerializeField] private TextMeshProUGUI rootAmount;
-    [SerializeField]private Dictionary<DialogueCommand, UI_DialogueBubble> spawnedBubbleDict;
-    [SerializeField]private List<DialogueCommand> playedCommand;
+    [SerializeField] private Dictionary<DialogueCommand, UI_DialogueBubble> spawnedBubbleDict;
+    [SerializeField] private List<DialogueCommand> playedCommand;
     private void Awake()
     {
         EventHandler.E_UI_RefreshRootCount += RefreshRootAmount;
@@ -23,6 +24,9 @@ public class UI_Manager : MonoBehaviour
         EventHandler.E_UI_OnShowDialogueBubble += ShowDialogueBubble;
         EventHandler.E_UI_OnHideDialogueBubble += HideDialogueBubble;
         EventHandler.E_OnBeforeSceneUnload += CleanUpDialogues;
+        EventHandler.E_OnAfterSceneUnload += CheckRootUI;
+
+        rootUI_Panel.SetActive(false);
     }
     private void OnDestroy()
     {
@@ -31,6 +35,7 @@ public class UI_Manager : MonoBehaviour
         EventHandler.E_UI_OnShowDialogueBubble -= ShowDialogueBubble;
         EventHandler.E_UI_OnHideDialogueBubble -= HideDialogueBubble;
         EventHandler.E_OnBeforeSceneUnload -= CleanUpDialogues;
+        EventHandler.E_OnAfterSceneUnload -= CheckRootUI;
     }
     private void Update()
     {
@@ -57,6 +62,13 @@ public class UI_Manager : MonoBehaviour
         else
         {
             subtitleText.text = content;
+        }
+    }
+    void CheckRootUI(string unloadSceneName)
+    {
+        if(unloadSceneName == "Start Menu")
+        {
+            rootUI_Panel.SetActive(true);
         }
     }
     void CleanUpDialogues()

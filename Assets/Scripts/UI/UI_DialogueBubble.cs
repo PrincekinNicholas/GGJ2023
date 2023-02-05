@@ -27,13 +27,13 @@ public class UI_DialogueBubble : MonoBehaviour
         nameTag.text = speakerName;
         dialogue.text = speakContent;
 
-        continueMarkTag.color = style.TextColor;
-        nameTag.color  = style.TextColor;
-        dialogue.color = style.TextColor;
+        //continueMarkTag.color = style.TextColor;
+        //nameTag.color  = style.TextColor;
+        //dialogue.color = style.TextColor;
 
-        nameTagBackground.color = style.NameColor;
-        contentImage.color = style.ContentColor;
-        continueMark.color = style.ContinueMarkColor;
+        //nameTagBackground.color = style.NameColor;
+        //contentImage.color = style.ContentColor;
+        //continueMark.color = style.ContinueMarkColor;
 
         this.lifeTime = lifeTime;
         if (lifeTime <= -1) autoFade = false;
