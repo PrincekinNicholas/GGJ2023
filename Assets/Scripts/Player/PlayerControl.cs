@@ -19,6 +19,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
     [SerializeField] private LayerMask platformLayer;
     [SerializeField] private float MaxjumpForce;
     [SerializeField] private float groundCheckRadius = 0.1f;
+    [SerializeField] private float groundCheckHeight = 0f;
 [Header("Crouch")]
     [SerializeField] private bool holdCrouch = false;
     [SerializeField] private bool headBlocked = false;
@@ -94,7 +95,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         }
     }
     void OnDrawGizmos(){
-        DebugExtension.DrawCircle(transform.position, Vector3.forward, Color.green, groundCheckRadius);
+        DebugExtension.DrawCircle(transform.position+Vector3.up * groundCheckHeight, Vector3.forward, Color.green, groundCheckRadius);
         Gizmos.color = Color.green;
         Gizmos.DrawRay(transform.position + Vector3.up * 0.62f, Vector3.up * 0.1f);
     }
@@ -115,7 +116,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
         if(!isDead) m_input.ActivateInput();
     }
     void GroundCheck(){
-        if(Physics2D.OverlapCircle(transform.position, groundCheckRadius, platformLayer) != null) onGround = true;
+        if(Physics2D.OverlapCircle(transform.position+Vector3.up*groundCheckHeight, groundCheckRadius, platformLayer) != null) onGround = true;
         else onGround = false;
     }
     void CrouchHeadCheck()
@@ -228,7 +229,7 @@ public class PlayerControl : MonoBehaviour, ISlowable{
     void OnJump(InputValue value){
         if(playerState == PLAYER_STATE.DEFAULT && onGround) {
             airdriftSpeed = Mathf.Max(Mathf.Abs(m_rigid.velocity.x), minAirdriftSpeed);//以玩家起跳时的速度和最低的airdrift速度做比较，得到最后可行的速度
-            transform.position += Vector3.up * (groundCheckRadius + 0.01f); //将玩家抬起来一点，以避免跳起的瞬间触发落地检测
+            transform.position += Vector3.up * ((groundCheckRadius-groundCheckHeight) + 0.01f); //将玩家抬起来一点，以避免跳起的瞬间触发落地检测
             m_rigid.AddForce(Vector3.up * jumpForce, ForceMode2D.Impulse);
             m_animator.SetTrigger(jumpTrigger);
             playerState = PLAYER_STATE.JUMP;

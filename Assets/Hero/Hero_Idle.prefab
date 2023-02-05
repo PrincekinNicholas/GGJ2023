@@ -438,7 +438,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   MaxjumpForce: 6
-  groundCheckRadius: 0.05
+  groundCheckRadius: 0.39
+  groundCheckHeight: 0.36
   holdCrouch: 0
   headBlocked: 0
   playerSource: {fileID: 5203171314751097990}
