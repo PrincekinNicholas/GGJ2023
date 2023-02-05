@@ -41,7 +41,7 @@ public class UI_Manager : MonoBehaviour
             {
                 var dialogue = spawnedBubbleDict[playedCommand[i]];
                 dialogue.DialogueUpdate();
-                if (dialogue.TimeUp)
+                if (dialogue.TimeUp && dialogue.autoFade)
                 {
                     dialogue.FadeContent(false);
                 }
