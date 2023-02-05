@@ -16,15 +16,12 @@
       {
           float4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.texcoord);
           float mask = tex2D(_LightPPMaskTex, i.texcoord).r;
-          if (mask > 0.4) {
 
-          }
           mask = floor(mask * 4) / 4;
           float dither = tex2D(_DitherTex, i.texcoord).r;
           mask = isDithered(i.texcoord, mask);
 
           color.rgb = lerp(color.rgb*_Darkness, color.rgb*(1+_Intensity), mask);
-          color.a = lerp(color.a, color.a * (1 + _Intensity), mask);
 
 // Return the result
           return color;

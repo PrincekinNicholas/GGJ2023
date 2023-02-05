@@ -422,7 +422,7 @@ MonoBehaviour:
   dialogue: {fileID: 3879993573223754463}
   nameTag: {fileID: 3879993574091753253}
   continueMarkTag: {fileID: 3879993573204550104}
-  dialogueFadeSpeed: 1
+  dialogueFadeSpeed: 4
   lifeTime: 0
   contentImage: {fileID: 3879993573903214831}
   continueMark: {fileID: 3879993574165872415}
