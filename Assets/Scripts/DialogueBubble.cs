@@ -39,7 +39,11 @@ public class DialogueBubble : MonoBehaviour
             bossDialogue.content = killingSpeakingContent;
             if(collision.tag == Service.playerTag)
             {
-                collision.GetComponent<PlayerControl>().Kill();
+                PlayerControl pc = collision.GetComponent<PlayerControl>();
+                if (!pc.godMode)
+                {
+                    collision.GetComponent<PlayerControl>().Kill();
+                }
             }   
         }
     }

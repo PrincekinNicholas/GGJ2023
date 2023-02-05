@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator), typeof(PlayerInput))]
 public class PlayerControl : MonoBehaviour, ISlowable{
     public float slowFactor { get; set; } = 1;
+    public bool godMode;    //≤‚ ‘◊®”√
     [SerializeField] private PLAYER_STATE playerState = PLAYER_STATE.DEFAULT;
 [Header("Basic Movement")]
     [SerializeField] private float moveSpeed;
